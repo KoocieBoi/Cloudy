@@ -16,6 +16,14 @@
         "example": "`cloudy copyright`"
     },
     {
+        "id": "command",
+        "name": "name",
+        "category": "category",
+        "description": "description",
+        "usage": "`<command>`",
+        "example": "`cloudy command`" 
+    }
+    {
         "id": "cl_role",
         "name": "Role",
         "category": "Miscellaneous",
