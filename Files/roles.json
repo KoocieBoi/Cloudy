@@ -1,0 +1,38 @@
+{
+    "colours": {
+        "name": [                   
+            "Dry Rainbow Red", "Dry Rainbow Orange", "Dry Rainbow Yellow",
+            "Dry Rainbow Purple", "Dry Rainbow Green", "Dry Rainbow Blue",
+
+            "Cakes and Rainbows Red", "Cakes and Rainbows Orange", "Cakes and Rainbows Yellow",
+            "Cakes and Rainbows Purple", "Cakes and Rainbows Green", "Cakes and Rainbows Blue",
+
+            "Party in the Pool no. 1", "Party in the Pool no. 2", "Party in the Pool no. 3",
+            "Party in the Pool no. 4", "Party in the Pool no. 5"
+        ],
+        "nameID": [
+            "DRR", "DRO", "DRY", "DRP", "DRG", "DRB",
+            "CRR", "CRO", "CRY", "CRP", "CRG", "CRB",
+            "PP1", "PP2", "PP3", "PP4", "PP5"
+        ],
+        "ID": [
+            "425395038697291816", "425395171673243649", "425395409503125525",
+            "425395568232235009", "425395789922304011", "425395972131258373",
+
+            "426110309015617536", "426110834197004329", "426111361777664001",
+            "426112022959095818", "426111715965403147", "426112222494982174",
+
+            "427085380010115072", "427087130876182528", "427087817408249866",
+            "427088137735503893", "427088137735503893"
+        ],
+        "levels": [
+            "424998539375017995",
+            "425011320929124382"
+        ]
+    },
+    "osu": {
+        "name": "osu!",
+        "nameID": "o!",
+        "ID": "433338984253489153"
+    }
+}

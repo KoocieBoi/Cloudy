@@ -1,0 +1,26 @@
+[
+    {
+        "id": "firstItem",
+        "name": "",
+        "category": "",
+        "description": "",
+        "usage": "",
+        "example": ""
+    },
+    {
+        "id": "cl_copyright",
+        "name": "Copyright",
+        "category": "Miscellaneous",
+        "description": "Shows you copyright info about the bot.",
+        "usage": "`<command>`",
+        "example": "`cloudy copyright`"
+    },
+    {
+        "id": "cl_role",
+        "name": "Role",
+        "category": "Miscellaneous",
+        "description": "Gives you a self-assignable role.",
+        "usage": "`<command> <add | remove | list> <role | role>`",
+        "example": "`cloudy role add DRB`\n`cloudy role remove DRY`\n`cloudy role list`"
+    }
+]
