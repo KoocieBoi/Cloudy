@@ -23,7 +23,7 @@ module.exports = async (msg, args) => {
                         let colourNameID = roles.colours.nameID[colourIndex];
                         let colour = roles.colours.ID[colourIndex];
                         await embed.SendRoleCommandMessage(msg, colourName, colourNameID, colour);
-                    } else await embed.SendAlreadyHasRole(msg);
+                    } else await embed.SendAlreadyHasColour(msg);
                 }
                 else if (args[1].toLowerCase() === roles.osu.nameID) {
                     if (hasosu) await embed.SendRoleAlreadyHaveThat(msg);

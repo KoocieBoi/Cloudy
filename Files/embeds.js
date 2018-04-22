@@ -102,12 +102,12 @@ exports.SendRoleCommandMessage = async (msg, roleName, roleNameID, role) => {
     await msg.channel.send({ embed: RoleCommandMessage });
 };
 
-exports.SendAlreadyHasRole = async (msg) => {
-    let AlreadyHasRole = new Discord.RichEmbed()
+exports.SendAlreadyHasColour = async (msg) => {
+    let AlreadyHasColour = new Discord.RichEmbed()
         .setColor(embedcolor)
-        .setDescription("You already have a role! You need to remove your role with the `cloudy role remove <role>` command before getting a new role.")
+        .setDescription("You already have a colour! You need to remove your colour with the `cloudy role remove <colour>` command before getting a new colour.")
         .setTimestamp();
-    await msg.channel.send({ embed: AlreadyHasRole });
+    await msg.channel.send({ embed: AlreadyHasColour });
 };
 
 exports.SendRoleListCommandMessage = async (msg) => {
