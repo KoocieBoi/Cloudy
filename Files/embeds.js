@@ -232,3 +232,16 @@ exports.SendDogCommandMessage = (Message, Dog) => {
         .setFooter(`Dog image requested by ${Message.author.username}`);
     Message.channel.send({embed: DogCommandMessage});
 };
+
+exports.SendCatCommandMessage = (Message, ParsedCat) => {
+    let CatImageURL = ParsedCat.getElementByID("url");
+    let CatImageSourceURL = ParsedCat.getElementByID("source_url");
+    const CatCommandMessage = new Discord.RichEmbed()
+        .setColor(EmbedColor)
+        .setTimestamp()
+        .setImage(CatImageURL)
+        .setTitle('Meow! 🐱')
+        .setDescription(CatImageSourceURL)
+        .setFooter(`Cat image requested by ${Message.author.username}`);
+    Message.channel.send({embed: CatCommandMessage});
+};

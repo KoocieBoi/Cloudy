@@ -34,5 +34,13 @@
         "description": "Gives you a random image of a dog.",
         "usage": "`<command>`",
         "example": "`cloudy dog`"
+    },
+    {
+        "id": "cl_cat",
+        "name": "Cat",
+        "category": "Animals",
+        "description": "Gives you a random image of a cat.",
+        "usage": "`<command>`",
+        "example": "`cloudy cat`"
     }
 ]
