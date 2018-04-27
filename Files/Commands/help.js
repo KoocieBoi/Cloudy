@@ -3,6 +3,7 @@ const EmbedsFile = require("../embeds");
 
 module.exports = (Message, Arguments) => {
     if (Arguments[0] === undefined) EmbedsFile.SendHelpCommandNoArgumentsProvidedMessage(Message);
+    else if (Arguments[1] !== undefined) { EmbedsFile.SendCommandWrongUsage(Message, 2); return; }
     else {
         let FoundCommand = false;
         CommandsFile.forEach((Command, Index) => {

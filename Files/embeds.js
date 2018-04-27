@@ -196,7 +196,7 @@ exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
     let HelpCommandNoArgumentsProvidedMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
-        .setFooter("cloudy help <command> for help about a command")
+        .setFooter("cloudy help <id> for help about a command")
         .setTitle("List of commands");
     for (let i = 0; i < CategoryList.length ;i++) MakeHelpStringByCategory(CategoryList[i], HelpCommandNoArgumentsProvidedMessage);
     Message.channel.send({embed: HelpCommandNoArgumentsProvidedMessage});
@@ -210,7 +210,7 @@ exports.SendHelpCommandCommandMessage = async (Message, Command) => {
         .setDescription(Command.description)
         .addField("Usage", Command.usage)
         .addField("Example", Command.example)
-        .setFooter(`Looking at usage for the command ${Command.id}`);
+        .setFooter(`Looking at the usage for the command ${Command.id}`);
     Message.channel.send({embed: HelpCommandCommandMessage});
 };
 

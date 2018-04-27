@@ -12,12 +12,12 @@
         "example": "`cloudy copyright`"
     },
     {
-        "id": "command",
-        "name": "name",
-        "category": "category",
-        "description": "description",
-        "usage": "`<command>`",
-        "example": "`cloudy command`" 
+        "id": "cl_help",
+        "name": "Help",
+        "category": "Miscellaneous",
+        "description": "Gives you a list of the bot's commands",
+        "usage": "`<command> [id]`",
+        "example": "`cloudy help`\n`cloudy help cl_help`" 
     },
     {
         "id": "cl_role",
