@@ -222,3 +222,13 @@ exports.SendHelpCommandCommandNotFoundMessage = async (Message, Command) => {
         .setDescription(`The \`${Command}\` command was not found`);
     Message.channel.send({embed: HelpCommandCommandNotFoundMessage});
 };
+
+exports.SendDogCommandMessage = (Message, Dog) => {
+    const DogCommandMessage = new Discord.RichEmbed()
+        .setColor(EmbedColor)
+        .setTimestamp()
+        .setImage(Dog.data.message)
+        .setTitle('Woof! 🐶')
+        .setFooter(`Dog image requested by ${Message.author.username}`);
+    Message.channel.send({embed: DogCommandMessage});
+};

@@ -1,6 +1,7 @@
 const CopyrightCommand = require("../Commands/copyright");
 const RoleCommand = require("../Commands/role");
 const HelpCommand = require("../Commands/help");
+const DogCommand = require("../Commands/dog");
 
 module.exports = (Message) => {
     const Prefix = "cloudy ";
@@ -12,4 +13,5 @@ module.exports = (Message) => {
     if (Message.content.startsWith(`${Prefix}copyright`)) CopyrightCommand(Message, Arguments); 
     if (Message.content.startsWith(`${Prefix}role`)) RoleCommand(Message, Arguments);
     if (Message.content.startsWith(`${Prefix}help`)) HelpCommand(Message, Arguments);
+    if (Message.content.startsWith(`${Prefix}dog`)) DogCommand(Message, Arguments);
 };

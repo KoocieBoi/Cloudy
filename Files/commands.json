@@ -1,7 +1,7 @@
 [
     {
         "id": "firstItem",
-        "categoryList": ["Miscellaneous"]
+        "categoryList": ["Miscellaneous", "Animals"]
     },
     {
         "id": "cl_copyright",
@@ -26,5 +26,13 @@
         "description": "Gives you a self-assignable role.",
         "usage": "`<command> <add | remove | list> <role | role>`",
         "example": "`cloudy role add DRB`\n`cloudy role remove DRY`\n`cloudy role list`"
+    },
+    {
+        "id": "cl_dog",
+        "name": "Dog",
+        "category": "Animals",
+        "description": "Gives you a random image of a dog.",
+        "usage": "`<command>`",
+        "example": "`cloudy dog`"
     }
 ]
