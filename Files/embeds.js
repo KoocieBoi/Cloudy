@@ -3,6 +3,7 @@ const EmbedColor = "#3498db";
 const CommandsFile = require("./commands.json");
 const RolesFile = require("./roles.json");
 
+/*
 exports.SendDMWelcomeMessage = async (Member) => {
     const DMWelcomeMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
@@ -12,6 +13,8 @@ exports.SendDMWelcomeMessage = async (Member) => {
         .setTimestamp();
     await Member.send({ embed: DMWelcomeMessage });
 };
+*/
+// SendDMWelcomeMessage is not used anymore.
 
 exports.SendLogChannelWelcomeMessage = async (Member) => {
     let log = Member.guild.channels.get("427823157303574528");
@@ -174,4 +177,48 @@ exports.SendRoleAlreadyHaveThat = async (Message) => {
         .setDescription("You already have that role!")
         .setTimestamp();
     await Message.channel.send({ embed: RoleAlreadyHaveThat });
+};
+
+exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
+    function MakeHelpStringByCategory (Category, Embed) {
+        let CommandsFound = 0; // This will also be used as an index when listing the commands.
+        let CommandsListFormat = "";
+        CommandsFile.forEach((Command) => {
+            if (Command.id === "firstItem") return;
+            if (Command.category === Category) {
+                CommandsFound++;
+                CommandsListFormat += `${CommandsFound}. **${Command.name}** (${Command.id}): ${Command.description}\nUsage: ${Command.usage}\n\n`;
+            }
+        });
+        Embed.addField(`${Category} (${CommandsFound} commands)`, CommandsListFormat);
+    }
+    let CategoryList = CommandsFile[0].categoryList;
+    let HelpCommandNoArgumentsProvidedMessage = new Discord.RichEmbed()
+        .setColor(EmbedColor)
+        .setTimestamp()
+        .setFooter("cloudy help <command> for help about a command")
+        .setTitle("List of commands");
+    for (let i = 0; i < CategoryList.length ;i++) MakeHelpStringByCategory(CategoryList[i], HelpCommandNoArgumentsProvidedMessage);
+    Message.channel.send({embed: HelpCommandNoArgumentsProvidedMessage});
+};
+
+exports.SendHelpCommandCommandMessage = async (Message, Command) => {
+    const HelpCommandCommandMessage = new Discord.RichEmbed()
+        .setColor(EmbedColor)
+        .setTimestamp()
+        .setTitle(Command.name)
+        .setDescription(Command.description)
+        .addField("Usage", Command.usage)
+        .addField("Example", Command.example)
+        .setFooter(`Looking at usage for the command ${Command.id}`);
+    Message.channel.send({embed: HelpCommandCommandMessage});
+};
+
+exports.SendHelpCommandCommandNotFoundMessage = async (Message, Command) => {
+    const HelpCommandCommandNotFoundMessage = new Discord.RichEmbed()
+        .setColor(EmbedColor)
+        .setTimestamp()
+        .setTitle("Command not found.")
+        .setDescription(`The \`${Command}\` command was not found`);
+    Message.channel.send({embed: HelpCommandCommandNotFoundMessage});
 };

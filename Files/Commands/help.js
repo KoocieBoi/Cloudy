@@ -1,30 +1,17 @@
 const CommandsFile = require("../commands.json");
-const Discord = require("discord.js");
-const EmbedColor = "#3498db";
+const EmbedsFile = require("../embeds");
 
-module.exports = async (Message, Arguments) => {
-    function MakeHelpStringByCategory (Category, Embed) {
-        let CommandsFound = 0; // This will also be used as an index when listing the commands.
-        let CommandsListFormat = "";
-
-        CommandsFile.forEach((Command) => {
-            if (Command.id === "firstItem") return;
-            if (Command.category === Category) {
-                CommandsFound++;
-                CommandsListFormat += `${CommandsFound}. **${Command.name}** (${Command.id}): ${Command.description}\nUsage: ${Command.usage}\n\n`;
+module.exports = (Message, Arguments) => {
+    if (Arguments[0] === undefined) EmbedsFile.SendHelpCommandNoArgumentsProvidedMessage(Message);
+    else {
+        let FoundCommand = false;
+        CommandsFile.forEach((Command, Index) => {
+            if (Arguments[0] === Command.id && Arguments[0] !== CommandsFile[0].id) {
+                FoundCommand = CommandsFile[Index];
+                EmbedsFile.SendHelpCommandCommandMessage(Message, FoundCommand);
             }
         });
-
-        Embed.addField(`${Category} (${CommandsFound} commands)`, CommandsListFormat);
-    }
-    if (Arguments[0] === undefined) {
-        let NoArgumentsProvidedEmbed = new Discord.RichEmbed()
-            .setColor(EmbedColor)
-            .setTimestamp()
-            .setFooter("cloudy help <command> for help about a command")
-            .setTitle("List of commands");
-        MakeHelpStringByCategory("Miscellaneous", NoArgumentsProvidedEmbed);
-        Message.channel.send({embed: NoArgumentsProvidedEmbed});
+        if (FoundCommand === false) EmbedsFile.SendHelpCommandCommandNotFoundMessage(Message, Arguments[0]);
     }
 };
 

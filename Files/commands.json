@@ -1,11 +1,7 @@
 [
     {
         "id": "firstItem",
-        "name": "",
-        "category": "",
-        "description": "",
-        "usage": "",
-        "example": ""
+        "categoryList": ["Miscellaneous"]
     },
     {
         "id": "cl_copyright",
