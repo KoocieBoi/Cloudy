@@ -1,5 +1,4 @@
 const EmbedsFile = require("../embeds");
-const XMLParse = require("xml2js").parseString;
 const axios = require("axios");
 
 module.exports = (Message, Arguments) => {
@@ -7,9 +6,15 @@ module.exports = (Message, Arguments) => {
     else {
         axios.get("http://thecatapi.com/api/images/get?format=xml")
             .then((Cat) => {
-                XMLParse(Cat.data, (Error, Result) => {
-                    EmbedsFile.SendCatCommandMessage(Message, Result);
-                })
+                let FormatImageURL = /\\+/g;
+                let CatImage = Cat.data.file
+                EmbedsFile.SendCatCommandMessage(Message, Result);
+            });
+        axios.get("http://aws.random.cat/meow")
+            .then((Cat) => {
+                let FormatImageURL = /\\+/g;
+                let CatImage = Cat.data.file.replace(FormatImageURL, "");
+                EmbedsFile.SendCatCommandMessage(Message, CatImage);
             });
     }
 }
