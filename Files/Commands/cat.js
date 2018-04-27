@@ -2,7 +2,7 @@ const EmbedsFile = require("../embeds");
 const axios = require("axios");
 
 module.exports = (Message, Arguments) => {
-    if (Arguments[0] !== undefined) EmbedsFile.SendCommandWrongUsage(Message, 4);
+    if (Arguments[0] !== undefined) EmbedsFile.SendCommandWrongUsage(Message, 5);
     else {
         axios.get("http://aws.random.cat/meow")
             .then((Cat) => {
