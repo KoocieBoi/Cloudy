@@ -31,7 +31,7 @@ Client.on("guildMemberAdd", (Member) => GuildMemberAddEvent(Member) );
 
 Client.on("guildMemberRemove", (Member) => GuildMemberRemoveEvent(Member) );
 
-Client.on("message", (Message) => MessageEvent(Message));
+Client.on("message", (Message) => MessageEvent(Message, Client));
 
 Client.on("messageReactionAdd", (Reaction, User) => MessageReactionAddEvent(Client, Reaction, User));
 

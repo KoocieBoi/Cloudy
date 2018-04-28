@@ -1,12 +1,10 @@
-import { Client } from "discord.js";
-
 const CopyrightCommand = require("../Commands/copyright");
 const RoleCommand = require("../Commands/role");
 const HelpCommand = require("../Commands/help");
 const DogCommand = require("../Commands/dog");
 const CatCommand = require("../Commands/cat");
 
-module.exports = (Message) => {
+module.exports = (Message, Client) => {
     const Prefix = "cloudy ";
     if (Message.author.bot && Message.channel.type !== "text") { return; }
 
