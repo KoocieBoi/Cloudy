@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
-const EmbedColor = "#3498db";
+const EmbedColor = "ffe082";
 const CommandsFile = require("./commands.json");
 const RolesFile = require("./roles.json");
 
 /*
 exports.SendDMWelcomeMessage = async (Member) => {
     const DMWelcomeMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setAuthor("Hi! (^ _ ^)/", Member.user.avatarURL)
         .setDescription(`Welcome to my land, __${Member.user.username}__. I hope you'll have a great time here. \n Be sure to read the rules and accept them to get access to the other channels.`)
         .setFooter("I will send you a server guide after you accept the rules!")
@@ -19,7 +19,7 @@ exports.SendDMWelcomeMessage = async (Member) => {
 exports.SendLogChannelWelcomeMessage = async (Member) => {
     let log = Member.guild.channels.get("427823157303574528");
     const LogChannelWelcomeMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setAuthor("Someone had joined us! (^ _ ^)/", Member.user.avatarURL)
         .setDescription(`Say hi to __${Member.user.username}__.`)
         .setFooter(`ID: ${Member.user.id} (${Member.user.discriminator})`)
@@ -30,7 +30,7 @@ exports.SendLogChannelWelcomeMessage = async (Member) => {
 exports.SendLogChannelLeaveMessage = async (Member) => {
     let log = Member.guild.channels.get("427823157303574528");
     const LogChannelLeaveMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setAuthor("Someone had left us! ( >д<)", Member.user.avatarURL)
         .setDescription(`Sadly, __${Member.user.username}__ left us.`)
         .setFooter(`ID: ${Member.user.id} (${Member.user.discriminator})`)
@@ -40,7 +40,7 @@ exports.SendLogChannelLeaveMessage = async (Member) => {
 
 exports.SendCopyrightCommandMessage = async (Message) => {
     let CopyrightMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setAuthor("Icon")
         .setDescription("Bot's icon was made by [**Nick Roach**](https://www.elegantthemes.com/)\n[Icon](https://www.iconfinder.com/icons/1055089)\n[License (GPLv3)](https://www.gnu.org/copyleft/gpl.html)")
         .setTimestamp();
@@ -49,7 +49,7 @@ exports.SendCopyrightCommandMessage = async (Message) => {
 
 exports.SendCommandWrongUsage = async (Message, CommandNumber) => {
     let CommandWrongUsage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setAuthor("Bad command usage!")
         .setDescription(`Usage: \n${CommandsFile[CommandNumber].usage}\n\nExample: \n${CommandsFile[CommandNumber].example}`)
         .setFooter(`encountered by ${Message.author.username} on ${CommandsFile[CommandNumber].id}`)
@@ -74,7 +74,7 @@ exports.SendColourCommandListMessage = async (Message) => {
         return finalString;
     }
     let ColoursCommandListMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setAuthor("Self-Assignable Roles")
         .setTimestamp();
 
@@ -97,7 +97,7 @@ exports.SendColourCommandListMessage = async (Message) => {
 
 exports.SendRoleCommandMessage = async (Message, roleName, roleNameID, role) => {
     let RoleCommandMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setDescription(`You've received the \`${roleName} (${roleNameID})\` role.`)
         .setFooter("enjoy your role!")
         .setTimestamp();
@@ -107,7 +107,7 @@ exports.SendRoleCommandMessage = async (Message, roleName, roleNameID, role) => 
 
 exports.SendAlreadyHasColour = async (Message) => {
     let AlreadyHasColour = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setDescription("You already have a colour! You need to remove your colour with the `cloudy role remove <colour>` command before getting a new colour.")
         .setTimestamp();
     await Message.channel.send({ embed: AlreadyHasColour });
@@ -132,7 +132,7 @@ exports.SendRoleListCommandMessage = async (Message) => {
     }
 
     let RoleListCommandMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setAuthor("Self-Assignable Roles")
         .setDescription("**Command:** `cloudy role (add | remove) ID`")
         .setTimestamp();
@@ -156,7 +156,7 @@ exports.SendRoleListCommandMessage = async (Message) => {
 
 exports.SendRoleRemoveMessage = async (Message, roleName, roleNameID, role) => {
     let RoleRemoveMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setDescription(`You've removed the \`${roleName} (${roleNameID})\` role from yourself.`)
         .setTimestamp();
     await Message.channel.send({ embed: RoleRemoveMessage });
@@ -165,7 +165,7 @@ exports.SendRoleRemoveMessage = async (Message, roleName, roleNameID, role) => {
 
 exports.SendRoleRemoveNotHaveMessage = async (Message) => {
     let RoleRemoveNotHaveMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setDescription("You do not have that colour!")
         .setTimestamp();
     await Message.channel.send({ embed: RoleRemoveNotHaveMessage });
@@ -173,7 +173,7 @@ exports.SendRoleRemoveNotHaveMessage = async (Message) => {
 
 exports.SendRoleAlreadyHaveThat = async (Message) => {
     let RoleAlreadyHaveThat = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setDescription("You already have that role!")
         .setTimestamp();
     await Message.channel.send({ embed: RoleAlreadyHaveThat });
@@ -194,7 +194,7 @@ exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
     }
     let CategoryList = CommandsFile[0].categoryList;
     let HelpCommandNoArgumentsProvidedMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setTimestamp()
         .setFooter("cloudy help <id> for help about a command")
         .setTitle("List of commands");
@@ -204,7 +204,7 @@ exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
 
 exports.SendHelpCommandCommandMessage = async (Message, Command) => {
     const HelpCommandCommandMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setTimestamp()
         .setTitle(Command.name)
         .setDescription(Command.description)
@@ -216,7 +216,7 @@ exports.SendHelpCommandCommandMessage = async (Message, Command) => {
 
 exports.SendHelpCommandCommandNotFoundMessage = async (Message, Command) => {
     const HelpCommandCommandNotFoundMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setTimestamp()
         .setTitle("Command not found.")
         .setDescription(`The \`${Command}\` command was not found`);
@@ -225,7 +225,7 @@ exports.SendHelpCommandCommandNotFoundMessage = async (Message, Command) => {
 
 exports.SendDogCommandMessage = (Message, Dog) => {
     const DogCommandMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setTimestamp()
         .setImage(Dog.data.message)
         .setTitle('Woof! 🐶')
@@ -235,10 +235,40 @@ exports.SendDogCommandMessage = (Message, Dog) => {
 
 exports.SendCatCommandMessage = (Message, Cat) => {
     const CatCommandMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(parseInt(`0x${EmbedColor}`))
         .setTimestamp()
         .setImage(Cat)
         .setTitle('Meow! 🐱')
         .setFooter(`Cat image requested by ${Message.author.username}`);
     Message.channel.send({embed: CatCommandMessage});
+};
+
+exports.SendErrorWebhook = (Message, Client, EncounteredError, Command) => {
+    let LoggingChannel = Client.channels.get("439735218832670721");
+    LoggingChannel.fetchWebhooks()
+        .then((Webhook) => {
+            let Hook = Webhook.find("name", "Logging");
+            if (!Hook) return console.log("Error! No webhook!");
+            else {
+                Hook.send("", {
+                    "username": "Error",
+                    "avatarURL": "https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/caution-256.png",
+                    "embeds": [{
+                        "color": parseInt(`0x${EmbedColor}`),
+                        "description": `An error has occured while executing the \`${Command}\` command!`,
+                        "fields": [
+                            {
+                                "name": "Info about the user",
+                                "value": `Username: ${Message.author.username}#${Message.author.discriminator}\nID: ${Message.author.id}`
+                            },
+                            {
+                                "name": "Error",
+                                "value": `\`\`\`\n${EncounteredError}\n\`\`\``
+                            }
+                        ],
+                        "timestamp": new Date()
+                    }]
+                });
+            }
+        });
 };

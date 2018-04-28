@@ -14,6 +14,6 @@ module.exports = (Message, Client) => {
     if (Message.content.startsWith(`${Prefix}copyright`)) CopyrightCommand(Message, Arguments); 
     if (Message.content.startsWith(`${Prefix}role`)) RoleCommand(Message, Arguments);
     if (Message.content.startsWith(`${Prefix}help`)) HelpCommand(Message, Arguments);
-    if (Message.content.startsWith(`${Prefix}dog`)) DogCommand(Message, Arguments);
+    if (Message.content.startsWith(`${Prefix}dog`)) DogCommand(Message, Arguments, Client);
     if (Message.content.startsWith(`${Prefix}cat`)) CatCommand(Message, Arguments, Client);
 };
