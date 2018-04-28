@@ -6,8 +6,11 @@ const CatCommand = require("../Commands/cat");
 const CatfactCommand = require("../Commands/catfact");
 
 module.exports = (Message, Client) => {
-    const Prefix = "cl!" || "<@427799231399591946> " || "<@427799231399591946>";
     if (Message.author.bot || Message.channel.type !== "text") { return; }
+
+    let Prefix = "";
+    if (Message.content.startsWith("cl!")) Prefix = "cl!";
+    if (Message.content.startsWith("cl!")) Prefix = "<@427799231399591946> ";
 
     let Arguments = Message.content.slice(Prefix.length).trim().split(" ");
     let Command = Arguments.shift().toLowerCase();
