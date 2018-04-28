@@ -28,6 +28,10 @@ module.exports = (Message, Arguments, Client) => {
                                         {
                                             "name": "Informations",
                                             "value": `Username: ${Message.author.username}#${Message.author.discriminator}\nID: ${Message.author.id}`
+                                        },
+                                        {
+                                            "name": "Error",
+                                            "value": `\`\`\`\n${EncounteredError}\n\`\`\``
                                         }
                                     ],
                                     "timestamp": new Date()
