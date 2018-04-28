@@ -8,12 +8,20 @@ const CatfactCommand = require("../Commands/catfact");
 module.exports = (Message, Client) => {
     if (Message.author.bot || Message.channel.type !== "text") { return; }
 
-    let Prefix = "";
-    if (Message.content.startsWith("cl!")) Prefix = "cl!";
-    if (Message.content.startsWith("cl!")) Prefix = "<@427799231399591946> ";
+    let Prefix;
+    let Arguments;
+    let Command;
 
-    let Arguments = Message.content.slice(Prefix.length).trim().split(" ");
-    let Command = Arguments.shift().toLowerCase();
+    if (Message.content.startsWith("cl!")) {
+        Prefix = "cl!";
+        Arguments = Message.content.slice(Prefix.length).trim().split(" ");
+        Command = Arguments.shift().toLowerCase();
+    }
+    if (Message.content.startsWith("<@427799231399591946> ")) {
+        Prefix = "<@427799231399591946> ";
+        Arguments = Message.content.slice(Prefix.length).trim().split(" ");
+        Command = Arguments.shift().toLowerCase();
+    }
 
     if (Command === "copyright") CopyrightCommand(Message, Arguments); 
     if (Command === "role") RoleCommand(Message, Arguments);
