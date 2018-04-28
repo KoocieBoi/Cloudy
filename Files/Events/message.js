@@ -10,12 +10,12 @@ module.exports = (Message, Client) => {
     if (Message.author.bot || Message.channel.type !== "text") { return; }
 
     let Arguments = Message.content.slice(Prefix.length).trim().split(" ");
-    let cmd = Arguments.shift().toLowerCase();
+    let Command = Arguments.shift().toLowerCase();
 
-    if (Message.content.startsWith(`${Prefix}copyright`)) CopyrightCommand(Message, Arguments); 
-    if (Message.content.startsWith(`${Prefix}role`)) RoleCommand(Message, Arguments);
-    if (Message.content.startsWith(`${Prefix}help`)) HelpCommand(Message, Arguments);
-    if (Message.content.startsWith(`${Prefix}dog`)) DogCommand(Message, Arguments, Client);
-    if (Message.content.startsWith(`${Prefix}cat`)) CatCommand(Message, Arguments, Client);
-    if (Message.content.startsWith(`${Prefix}catfact`)) CatfactCommand(Message, Arguments, Client);
+    if (Command === "copyright") CopyrightCommand(Message, Arguments); 
+    if (Command === "role") RoleCommand(Message, Arguments);
+    if (Command === "help") HelpCommand(Message, Arguments);
+    if (Command === "dog") DogCommand(Message, Arguments, Client);
+    if (Command === "cat") CatCommand(Message, Arguments, Client);
+    if (Command === "catfact") CatfactCommand(Message, Arguments, Client);
 };
