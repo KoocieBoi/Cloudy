@@ -1,3 +1,5 @@
+import { Client } from "discord.js";
+
 const CopyrightCommand = require("../Commands/copyright");
 const RoleCommand = require("../Commands/role");
 const HelpCommand = require("../Commands/help");
@@ -15,5 +17,5 @@ module.exports = (Message) => {
     if (Message.content.startsWith(`${Prefix}role`)) RoleCommand(Message, Arguments);
     if (Message.content.startsWith(`${Prefix}help`)) HelpCommand(Message, Arguments);
     if (Message.content.startsWith(`${Prefix}dog`)) DogCommand(Message, Arguments);
-    if (Message.content.startsWith(`${Prefix}cat`)) CatCommand(Message, Arguments);
+    if (Message.content.startsWith(`${Prefix}cat`)) CatCommand(Message, Arguments, Client);
 };
