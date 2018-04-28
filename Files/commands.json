@@ -9,7 +9,7 @@
         "category": "Miscellaneous",
         "description": "Shows you copyright info about the bot.",
         "usage": "`<command>`",
-        "example": "`cloudy copyright`"
+        "example": "`cl!copyright`"
     },
     {
         "id": "cl_help",
@@ -17,7 +17,7 @@
         "category": "Miscellaneous",
         "description": "Gives you a list of the bot's commands",
         "usage": "`<command> [id]`",
-        "example": "`cloudy help`\n`cloudy help cl_help`" 
+        "example": "`cl!help`\n`cl!help cl_help`" 
     },
     {
         "id": "cl_role",
@@ -25,7 +25,7 @@
         "category": "Miscellaneous",
         "description": "Gives you a self-assignable role.",
         "usage": "`<command> <add | remove | list> <role | role>`",
-        "example": "`cloudy role add DRB`\n`cloudy role remove DRY`\n`cloudy role list`"
+        "example": "`cl!role add DRB`\n`cl!role remove DRY`\n`cl!role list`"
     },
     {
         "id": "cl_dog",
@@ -33,7 +33,7 @@
         "category": "Animals",
         "description": "Gives you a random image of a dog.",
         "usage": "`<command>`",
-        "example": "`cloudy dog`"
+        "example": "`cl!dog`"
     },
     {
         "id": "cl_cat",
@@ -41,6 +41,14 @@
         "category": "Animals",
         "description": "Gives you a random image of a cat.",
         "usage": "`<command>`",
-        "example": "`cloudy cat`"
+        "example": "`cl!cat`"
+    },
+    {
+        "id": "cl_catfact",
+        "name": "Cat Fact",
+        "category": "Animals",
+        "description": "Gives you a random cat fact.",
+        "usage": "`<command>`",
+        "example": "`cl!catfact`"
     }
 ]

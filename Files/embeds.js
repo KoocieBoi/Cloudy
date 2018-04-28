@@ -272,3 +272,13 @@ exports.SendErrorWebhook = (Message, Client, EncounteredError, Command) => {
             }
         });
 };
+
+exports.SendCatFactCommandMessage = (Message, Fact) => {
+    const CatFactCommandMessage = new Discord.RichEmbed()
+        .setTitle('Cat fact 🐱')
+        .setDescription(Fact)
+        .setColor(parseInt(`0x${EmbedColor}`))
+        .setFooter(`Cat fact requested by ${Message.author.username}`)
+        .setTimestamp();
+    Message.channel.send({embed: CatFactCommandMessage});
+}
