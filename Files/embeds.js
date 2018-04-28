@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const EmbedColor = "ffe082";
+const EmbedColor = "3f51b5";
 const CommandsFile = require("./commands.json");
 const RolesFile = require("./roles.json");
 
