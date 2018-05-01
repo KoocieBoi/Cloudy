@@ -6,6 +6,7 @@ const CatCommand = require("../Commands/cat");
 const CatfactCommand = require("../Commands/catfact");
 const BirdCommand = require("../Commands/bird");
 const FoxCommand = require("../Commands/fox");
+const ShibeCommand = require("../Commands/shibe");
 
 module.exports = (Message, Client) => {
     if (Message.author.bot || Message.channel.type !== "text") { return; }
@@ -33,4 +34,5 @@ module.exports = (Message, Client) => {
     if (Command === "catfact") CatfactCommand(Message, Arguments, Client);
     if (Command === "bird") BirdCommand(Message, Arguments, Client);
     if (Command === "fox") FoxCommand(Message, Arguments, Client);
+    if (Command === "shibe") ShibeCommand(Message, Arguments, Client);
 };

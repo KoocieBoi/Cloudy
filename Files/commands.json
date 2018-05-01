@@ -66,5 +66,13 @@
         "description": "Gives you a random image of a fox.",
         "usage": "`<command>`",
         "example": "`cl!fox`"
+    },
+    {
+        "id": "cl_shibe",
+        "name": "Shibe",
+        "category": "Animals",
+        "description": "Gives you a random image of a shibe dog.",
+        "usage": "`<command>`",
+        "example": "`cl!shibe`"
     }
 ]

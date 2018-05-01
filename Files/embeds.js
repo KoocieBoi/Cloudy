@@ -298,7 +298,17 @@ exports.SendFoxCommandMessage = (Message, Fox) => {
         .setColor(parseInt(`0x${EmbedColor}`))
         .setTimestamp()
         .setImage(Fox)
-        .setTitle('Wa-pa-pa-pa-pa-pa-pow 🦊')
+        .setTitle('Wa-pa-pa-pa-pa-pa-pow! 🦊')
         .setFooter(`Fox image requested by ${Message.author.username}`);
     Message.channel.send({embed: FoxCommandMessage});
+};
+
+exports.SendShibeCommandMessage = (Message, Shibe) => {
+    const ShibeCommandMessage = new Discord.RichEmbed()
+        .setColor(parseInt(`0x${EmbedColor}`))
+        .setTimestamp()
+        .setImage(Shibe)
+        .setTitle('Wouf! 🐶')
+        .setFooter(`Shibe image requested by ${Message.author.username}`);
+    Message.channel.send({embed: ShibeCommandMessage});
 };
