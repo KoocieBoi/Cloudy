@@ -1,6 +1,5 @@
 const EmbedsFile = require("../embeds");
 const axios = require("axios");
-// https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/caution-256.png
 
 module.exports = (Message, Arguments, Client) => {
     if (Arguments[0] !== undefined) EmbedsFile.SendCommandWrongUsage(Message, 5);

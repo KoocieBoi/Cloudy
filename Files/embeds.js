@@ -282,3 +282,13 @@ exports.SendCatFactCommandMessage = (Message, Fact) => {
         .setTimestamp();
     Message.channel.send({embed: CatFactCommandMessage});
 }
+
+exports.SendBirdCommandMessage = (Message, Bird) => {
+    const BirdCommandMessage = new Discord.RichEmbed()
+        .setColor(parseInt(`0x${EmbedColor}`))
+        .setTimestamp()
+        .setImage(Bird)
+        .setTitle('Chirp! 🐦')
+        .setFooter(`Bird image requested by ${Message.author.username}`);
+    Message.channel.send({embed: BirdCommandMessage});
+};

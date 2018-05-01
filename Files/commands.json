@@ -50,5 +50,13 @@
         "description": "Gives you a random cat fact.",
         "usage": "`<command>`",
         "example": "`cl!catfact`"
+    },
+    {
+        "id": "cl_bird",
+        "name": "Bird",
+        "category": "Animals",
+        "description": "Gives you a random image of a bird.",
+        "usage": "`<command>`",
+        "example": "`cl!bird`"
     }
 ]
