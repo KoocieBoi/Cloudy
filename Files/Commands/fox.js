@@ -8,7 +8,7 @@ module.exports = (Message, Arguments, Client) => {
             .then((Fox) => {
                 let FormatImageURL = /\\+/g;
                 let FoxImage = Fox.data.image.replace(FormatImageURL, "");
-                EmbedsFile.SendBirdCommandMessage(Message, FoxImage);
+                EmbedsFile.SendFoxCommandMessage(Message, FoxImage);
             })
             .catch((EncounteredError) => EmbedsFile.SendErrorWebhook(Message, Client, EncounteredError, "cl_fox"));
     }
