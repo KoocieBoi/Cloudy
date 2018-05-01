@@ -292,3 +292,13 @@ exports.SendBirdCommandMessage = (Message, Bird) => {
         .setFooter(`Bird image requested by ${Message.author.username}`);
     Message.channel.send({embed: BirdCommandMessage});
 };
+
+exports.SendFoxCommandMessage = (Message, Fox) => {
+    const BirdCommandMessage = new Discord.RichEmbed()
+        .setColor(parseInt(`0x${EmbedColor}`))
+        .setTimestamp()
+        .setImage(Fox)
+        .setTitle('Wa-pa-pa-pa-pa-pa-pow 🦊')
+        .setFooter(`Fox image requested by ${Message.author.username}`);
+    Message.channel.send({embed: FoxCommandMessage});
+};

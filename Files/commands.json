@@ -58,5 +58,13 @@
         "description": "Gives you a random image of a bird.",
         "usage": "`<command>`",
         "example": "`cl!bird`"
+    },
+    {
+        "id": "cl_fox",
+        "name": "Fox",
+        "category": "Animals",
+        "description": "Gives you a random image of a fox.",
+        "usage": "`<command>`",
+        "example": "`cl!fox`"
     }
 ]
