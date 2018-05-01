@@ -294,7 +294,7 @@ exports.SendBirdCommandMessage = (Message, Bird) => {
 };
 
 exports.SendFoxCommandMessage = (Message, Fox) => {
-    const BirdCommandMessage = new Discord.RichEmbed()
+    const FoxCommandMessage = new Discord.RichEmbed()
         .setColor(parseInt(`0x${EmbedColor}`))
         .setTimestamp()
         .setImage(Fox)
