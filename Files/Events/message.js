@@ -7,22 +7,23 @@ const CatfactCommand = require("../Commands/catfact");
 const BirdCommand = require("../Commands/bird");
 const FoxCommand = require("../Commands/fox");
 const ShibeCommand = require("../Commands/shibe");
+const Configuration = require("../configuration");
 
 module.exports = (Message, Client) => {
     if (Message.author.bot || Message.channel.type !== "text") { return; }
 
-    let Prefix;
-    let Arguments;
-    let Command;
+    let Prefix = {
+        letter: Configuration.bot.letterPrefix,
+        mention: Configuration.bot.mentionPrefix(),
+    };
+    let Arguments, Command;
 
-    if (Message.content.startsWith("cl!")) {
-        Prefix = "cl!";
-        Arguments = Message.content.slice(Prefix.length).trim().split(" ");
+    if (Message.content.startsWith(Prefix.letter)) {
+        Arguments = Message.content.slice(Prefix.letter.length).trim().split(" ");
         Command = Arguments.shift().toLowerCase();
     }
-    if (Message.content.startsWith("<@427799231399591946> ")) {
-        Prefix = "<@427799231399591946> ";
-        Arguments = Message.content.slice(Prefix.length).trim().split(" ");
+    if (Message.content.startsWith(Prefix.mention)) {
+        Arguments = Message.content.slice(Prefix.mention.length).trim().split(" ");
         Command = Arguments.shift().toLowerCase();
     }
 
