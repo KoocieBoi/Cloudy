@@ -14,7 +14,7 @@ module.exports = (Message, Client) => {
 
     let Prefix = {
         letter: Configuration.bot.letterPrefix,
-        mention: Configuration.bot.mentionPrefix(),
+        mention: Configuration.bot.mentionPrefix,
     };
     let Arguments, Command;
 
