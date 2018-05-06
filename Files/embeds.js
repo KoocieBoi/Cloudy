@@ -3,19 +3,6 @@ const EmbedColor = "3f51b5";
 const CommandsFile = require("./commands.json");
 const RolesFile = require("./roles.json");
 
-/*
-exports.SendDMWelcomeMessage = async (Member) => {
-    const DMWelcomeMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
-        .setAuthor("Hi! (^ _ ^)/", Member.user.avatarURL)
-        .setDescription(`Welcome to my land, __${Member.user.username}__. I hope you'll have a great time here. \n Be sure to read the rules and accept them to get access to the other channels.`)
-        .setFooter("I will send you a server guide after you accept the rules!")
-        .setTimestamp();
-    await Member.send({ embed: DMWelcomeMessage });
-};
-*/
-// SendDMWelcomeMessage is not used anymore.
-
 exports.SendLogChannelWelcomeMessage = async (Member) => {
     let log = Member.guild.channels.get("427823157303574528");
     const LogChannelWelcomeMessage = new Discord.RichEmbed()
@@ -123,10 +110,10 @@ exports.SendRoleListCommandMessage = async (Message) => {
         }
     }
 
-    function makeColourString(numArray) {
+    function makeColourString(minIndex, maxIndex) {
         let finalString = "";
-        for (let i = 0 ; i <= RolesFile.colours.name[numArray].length - 1 ; i++) {
-            finalString += `${RolesFile.colours.name[numArray][i]} • \`ID: ${RolesFile.colours.nameID[numArray][i]}\`\n`;
+        for (let i = minIndex; i <= maxIndex; i++) {
+            finalString += `${RolesFile.colours.name[i]} • \`ID: ${RolesFile.colours.nameID[i]}\`\n`;
         }
         return finalString;
     }
@@ -137,14 +124,14 @@ exports.SendRoleListCommandMessage = async (Message) => {
         .setDescription("**Command:** `cloudy role (add | remove) ID`")
         .setTimestamp();
 
-    RoleListCommandMessage.addField("Colours for everyone", makeColourString(0), true);
+    RoleListCommandMessage.addField("Colours for everyone", makeColourString(0, 5), true);
 
     switch (checkLevel(1)) {
-    case true:  RoleListCommandMessage.addField("Colours for level 1", makeColourString(1), true); break;
+    case true:  RoleListCommandMessage.addField("Colours for level 1", makeColourString(6, 11), true); break;
     default: RoleListCommandMessage.addField("Colours for level 1", "not unlocked yet!", true); break;
     }
     switch (checkLevel(10)) {
-    case true: RoleListCommandMessage.addField("Colours for level 10", makeColourString(2), true); break;
+    case true: RoleListCommandMessage.addField("Colours for level 10", makeColourString(12, 16), true); break;
     default: RoleListCommandMessage.addField("Colours for level 10", "not unlocked yet!", true); break;
     }
     
