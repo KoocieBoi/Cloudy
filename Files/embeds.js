@@ -174,7 +174,7 @@ exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
             if (Command.id === "firstItem") return;
             if (Command.category === Category) {
                 CommandsFound++;
-                CommandsListFormat += `${CommandsFound}. **${Command.name}** (${Command.id}): ${Command.description}\nUsage: ${Command.usage}\n\n`;
+                CommandsListFormat += `${CommandsFound}. **${Command.name}** (${Command.id}): ${Command.description}\n`;
             }
         });
         Embed.addField(`${Category} (${CommandsFound} commands)`, CommandsListFormat);
