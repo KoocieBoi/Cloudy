@@ -6,7 +6,7 @@ exports.bot = {
 };
 
 exports.guild = {
-
+    logJLChannelID: "427823157303574528",
 };
 
 exports.embeds = {
@@ -16,3 +16,11 @@ exports.embeds = {
 exports.commands = {
 
 };
+
+/* --- Notes --- */
+
+/*
+    The JL in exports.guild.logJLChannelID = Join / Leave
+*/
+
+/* --- Notes --- */

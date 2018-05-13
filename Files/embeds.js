@@ -1,12 +1,13 @@
 const Discord = require("discord.js");
-const EmbedColor = "3f51b5";
+const Configuration = require("./configuration");
 const CommandsFile = require("./commands.json");
 const RolesFile = require("./roles.json");
+const EmbedColor = Configuration.embeds.color;
 
 exports.SendLogChannelWelcomeMessage = async (Member) => {
-    let log = Member.guild.channels.get("427823157303574528");
+    let log = Member.guild.channels.get(Configuration.guild.logJLChannelID);
     const LogChannelWelcomeMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setAuthor("Someone had joined us! (^ _ ^)/", Member.user.avatarURL)
         .setDescription(`Say hi to __${Member.user.username}__.`)
         .setFooter(`ID: ${Member.user.id} (${Member.user.discriminator})`)
@@ -15,9 +16,9 @@ exports.SendLogChannelWelcomeMessage = async (Member) => {
 };
 
 exports.SendLogChannelLeaveMessage = async (Member) => {
-    let log = Member.guild.channels.get("427823157303574528");
+    let log = Member.guild.channels.get(Configuration.guild.logJLChannelID);
     const LogChannelLeaveMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setAuthor("Someone had left us! ( >д<)", Member.user.avatarURL)
         .setDescription(`Sadly, __${Member.user.username}__ left us.`)
         .setFooter(`ID: ${Member.user.id} (${Member.user.discriminator})`)
@@ -27,7 +28,7 @@ exports.SendLogChannelLeaveMessage = async (Member) => {
 
 exports.SendCopyrightCommandMessage = async (Message) => {
     let CopyrightMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setAuthor("Icon")
         .setDescription("Bot's icon was made by [**Nick Roach**](https://www.elegantthemes.com/)\n[Icon](https://www.iconfinder.com/icons/1055089)\n[License (GPLv3)](https://www.gnu.org/copyleft/gpl.html)")
         .setTimestamp();
@@ -36,7 +37,7 @@ exports.SendCopyrightCommandMessage = async (Message) => {
 
 exports.SendCommandWrongUsage = async (Message, CommandNumber) => {
     let CommandWrongUsage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setAuthor("Bad command usage!")
         .setDescription(`Usage: \n${CommandsFile[CommandNumber].usage}\n\nExample: \n${CommandsFile[CommandNumber].example}`)
         .setFooter(`encountered by ${Message.author.username} on ${CommandsFile[CommandNumber].id}`)
@@ -61,7 +62,7 @@ exports.SendColourCommandListMessage = async (Message) => {
         return finalString;
     }
     let ColoursCommandListMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setAuthor("Self-Assignable Roles")
         .setTimestamp();
 
@@ -82,19 +83,24 @@ exports.SendColourCommandListMessage = async (Message) => {
     Message.channel.send({ embed: ColoursCommandListMessage });
 };
 
-exports.SendRoleCommandMessage = async (Message, roleName, roleNameID, role) => {
+exports.SendRoleCommandMessage = async (Message, role, index) => {
+    let RoleInfo = {
+        name: role.name[index],
+        nameID: role.nameID[index],
+        ID: role.ID[index],
+    };
     let RoleCommandMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
-        .setDescription(`You've received the \`${roleName} (${roleNameID})\` role.`)
+        .setColor(EmbedColor)
+        .setDescription(`You've received the \`${RoleInfo.name} (${RoleInfo.nameID})\` role.`)
         .setFooter("enjoy your role!")
         .setTimestamp();
-    await Message.member.addRole(role);
+    await Message.member.addRole(RoleInfo.ID);
     await Message.channel.send({ embed: RoleCommandMessage });
 };
 
 exports.SendAlreadyHasColour = async (Message) => {
     let AlreadyHasColour = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setDescription("You already have a colour! You need to remove your colour with the `cloudy role remove <colour>` command before getting a new colour.")
         .setTimestamp();
     await Message.channel.send({ embed: AlreadyHasColour });
@@ -119,7 +125,7 @@ exports.SendRoleListCommandMessage = async (Message) => {
     }
 
     let RoleListCommandMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setAuthor("Self-Assignable Roles")
         .setDescription("**Command:** `cloudy role (add | remove) ID`")
         .setTimestamp();
@@ -127,40 +133,60 @@ exports.SendRoleListCommandMessage = async (Message) => {
     RoleListCommandMessage.addField("Colours for everyone", makeColourString(0, 5), true);
 
     switch (checkLevel(1)) {
-    case true:  RoleListCommandMessage.addField("Colours for level 1", makeColourString(6, 11), true); break;
-    default: RoleListCommandMessage.addField("Colours for level 1", "not unlocked yet!", true); break;
+        case true:
+            RoleListCommandMessage.addField("Colours for level 1", makeColourString(6, 11), true);
+            break;
+        default:
+            RoleListCommandMessage.addField("Colours for level 1", "not unlocked yet!", true);
+            break;
     }
+
     switch (checkLevel(10)) {
-    case true: RoleListCommandMessage.addField("Colours for level 10", makeColourString(12, 16), true); break;
-    default: RoleListCommandMessage.addField("Colours for level 10", "not unlocked yet!", true); break;
+        case true:
+            RoleListCommandMessage.addField("Colours for level 10", makeColourString(12, 16), true);
+            break;
+        default:
+            RoleListCommandMessage.addField("Colours for level 10", "not unlocked yet!", true);
+            break;
     }
     
-    RoleListCommandMessage.addField("Roles", "osu! • `ID: o!`");
+    let RolesList;
+    for (let i = 0; i < RolesFile.roles.name.length; i++) {
+        RolesList += `${RolesFile.roles.name[i]} • \`ID: ${RolesFile.roles.ID[i]}\``
+    }
+    RoleListCommandMessage.addField("Roles", RolesList);
+
+     // RoleListCommandMessage.addField("Roles", "osu! • `ID: o!`");
 
     Message.channel.send({ embed: RoleListCommandMessage });
 
 };
 
-exports.SendRoleRemoveMessage = async (Message, roleName, roleNameID, role) => {
+exports.SendRoleRemoveMessage = async (Message, role, index) => {
+    let RoleInfo = {
+        name: role.name[index],
+        nameID: role.nameID[index],
+        ID: role.ID[index],
+    };
     let RoleRemoveMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
-        .setDescription(`You've removed the \`${roleName} (${roleNameID})\` role from yourself.`)
+        .setColor(EmbedColor)
+        .setDescription(`You've removed the \`${RoleInfo.name} (${RoleInfo.nameID})\` role from yourself.`)
         .setTimestamp();
     await Message.channel.send({ embed: RoleRemoveMessage });
-    await Message.member.removeRole(role);
+    await Message.member.removeRole(RoleInfo.ID);
 };
 
 exports.SendRoleRemoveNotHaveMessage = async (Message) => {
     let RoleRemoveNotHaveMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
-        .setDescription("You do not have that colour!")
+        .setColor(EmbedColor)
+        .setDescription("You do not have that role!")
         .setTimestamp();
     await Message.channel.send({ embed: RoleRemoveNotHaveMessage });
 };
 
 exports.SendRoleAlreadyHaveThat = async (Message) => {
     let RoleAlreadyHaveThat = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setDescription("You already have that role!")
         .setTimestamp();
     await Message.channel.send({ embed: RoleAlreadyHaveThat });
@@ -181,7 +207,7 @@ exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
     }
     let CategoryList = CommandsFile[0].categoryList;
     let HelpCommandNoArgumentsProvidedMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setTimestamp()
         .setFooter("cloudy help <id> for help about a command")
         .setTitle("List of commands");
@@ -191,7 +217,7 @@ exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
 
 exports.SendHelpCommandCommandMessage = async (Message, Command) => {
     const HelpCommandCommandMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setTimestamp()
         .setTitle(Command.name)
         .setDescription(Command.description)
@@ -203,7 +229,7 @@ exports.SendHelpCommandCommandMessage = async (Message, Command) => {
 
 exports.SendHelpCommandCommandNotFoundMessage = async (Message, Command) => {
     const HelpCommandCommandNotFoundMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setTimestamp()
         .setTitle("Command not found.")
         .setDescription(`The \`${Command}\` command was not found`);
@@ -212,7 +238,7 @@ exports.SendHelpCommandCommandNotFoundMessage = async (Message, Command) => {
 
 exports.SendDogCommandMessage = (Message, Dog) => {
     const DogCommandMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Dog.data.message)
         .setTitle('Woof! 🐶')
@@ -222,7 +248,7 @@ exports.SendDogCommandMessage = (Message, Dog) => {
 
 exports.SendCatCommandMessage = (Message, Cat) => {
     const CatCommandMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Cat)
         .setTitle('Meow! 🐱')
@@ -241,7 +267,7 @@ exports.SendErrorWebhook = (Message, Client, EncounteredError, Command) => {
                     "username": "Error",
                     "avatarURL": "https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/caution-256.png",
                     "embeds": [{
-                        "color": parseInt(`0x${EmbedColor}`),
+                        "color": EmbedColor,
                         "description": `An error has occured while executing the \`${Command}\` command!`,
                         "fields": [
                             {
@@ -264,7 +290,7 @@ exports.SendCatFactCommandMessage = (Message, Fact) => {
     const CatFactCommandMessage = new Discord.RichEmbed()
         .setTitle('Cat fact 🐱')
         .setDescription(Fact)
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setFooter(`Cat fact requested by ${Message.author.username}`)
         .setTimestamp();
     Message.channel.send({embed: CatFactCommandMessage});
@@ -272,7 +298,7 @@ exports.SendCatFactCommandMessage = (Message, Fact) => {
 
 exports.SendBirdCommandMessage = (Message, Bird) => {
     const BirdCommandMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Bird)
         .setTitle('Chirp! 🐦')
@@ -282,7 +308,7 @@ exports.SendBirdCommandMessage = (Message, Bird) => {
 
 exports.SendFoxCommandMessage = (Message, Fox) => {
     const FoxCommandMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Fox)
         .setTitle('Wa-pa-pa-pa-pa-pa-pow! 🦊')
@@ -292,7 +318,7 @@ exports.SendFoxCommandMessage = (Message, Fox) => {
 
 exports.SendShibeCommandMessage = (Message, Shibe) => {
     const ShibeCommandMessage = new Discord.RichEmbed()
-        .setColor(parseInt(`0x${EmbedColor}`))
+        .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Shibe)
         .setTitle('Wouf! 🐶')
