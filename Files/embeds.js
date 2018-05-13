@@ -150,9 +150,9 @@ exports.SendRoleListCommandMessage = async (Message) => {
             break;
     }
     
-    let RolesList;
+    let RolesList = "";
     for (let i = 0; i < RolesFile.roles.name.length; i++) {
-        RolesList += `${RolesFile.roles.name[i]} • \`ID: ${RolesFile.roles.ID[i]}\``
+        RolesList += `${RolesFile.roles.name[i]} • \`ID: ${RolesFile.roles.nameID[i]}\`\n`
     }
     RoleListCommandMessage.addField("Roles", RolesList);
 
