@@ -9,7 +9,7 @@
         "category": "Miscellaneous",
         "description": "Shows you copyright info about the bot.",
         "usage": "`<command>`",
-        "example": "`cl!copyright`"
+        "example": "`cloudy copyright`"
     },
     {
         "id": "cl_help",
@@ -17,7 +17,7 @@
         "category": "Miscellaneous",
         "description": "Gives you a list of the bot's commands",
         "usage": "`<command> [id]`",
-        "example": "`cl!help`\n`cl!help cl_help`" 
+        "example": "`cloudy help`\n`cloudy help cl_help`" 
     },
     {
         "id": "cl_role",
@@ -25,7 +25,7 @@
         "category": "Miscellaneous",
         "description": "Gives you a self-assignable role.",
         "usage": "`<command> <add | remove | list> <role | role>`",
-        "example": "`cl!role add DRB`\n`cl!role remove DRY`\n`cl!role list`"
+        "example": "`cloudy role add DRB`\n`cloudy role remove DRY`\n`cloudy role list`"
     },
     {
         "id": "cl_dog",
@@ -33,7 +33,7 @@
         "category": "Animals",
         "description": "Gives you a random image of a dog.",
         "usage": "`<command>`",
-        "example": "`cl!dog`"
+        "example": "`cloudy dog`"
     },
     {
         "id": "cl_cat",
@@ -41,7 +41,7 @@
         "category": "Animals",
         "description": "Gives you a random image of a cat.",
         "usage": "`<command>`",
-        "example": "`cl!cat`"
+        "example": "`cloudy cat`"
     },
     {
         "id": "cl_catfact",
@@ -49,7 +49,7 @@
         "category": "Animals",
         "description": "Gives you a random cat fact.",
         "usage": "`<command>`",
-        "example": "`cl!catfact`"
+        "example": "`cloudy catfact`"
     },
     {
         "id": "cl_bird",
@@ -57,7 +57,7 @@
         "category": "Animals",
         "description": "Gives you a random image of a bird.",
         "usage": "`<command>`",
-        "example": "`cl!bird`"
+        "example": "`cloudy bird`"
     },
     {
         "id": "cl_fox",
@@ -65,7 +65,7 @@
         "category": "Animals",
         "description": "Gives you a random image of a fox.",
         "usage": "`<command>`",
-        "example": "`cl!fox`"
+        "example": "`cloudy fox`"
     },
     {
         "id": "cl_shibe",
@@ -73,6 +73,6 @@
         "category": "Animals",
         "description": "Gives you a random image of a shibe dog.",
         "usage": "`<command>`",
-        "example": "`cl!shibe`"
+        "example": "`cloudy shibe`"
     }
 ]

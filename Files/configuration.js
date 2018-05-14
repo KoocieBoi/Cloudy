@@ -1,7 +1,7 @@
 exports.bot = {
     token: process.env.TOKEN,
     id: "427799231399591946",
-    letterPrefix: "cl!",
+    letterPrefix: "cloudy ",
     mentionPrefix: function () { return `<@${this.id}> `; } 
 };
 
