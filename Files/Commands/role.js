@@ -38,7 +38,7 @@ module.exports = async (Message, Arguments) => {
             }
 
             if (Arguments[0].toLowerCase() === "add") {
-                    if (check("Colour", "Index" >= 0)) {
+                    if (check("Colour", "Index") >= 0) {
                         if (GetColoursCount() === 0) await EmbedsFile.SendRoleCommandMessage(Message, RolesFile.colours, check("Colour", "Index"));
                         else await EmbedsFile.SendAlreadyHasColour(Message);
                     }
