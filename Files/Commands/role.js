@@ -28,8 +28,8 @@ module.exports = async (Message, Arguments) => {
                 }
                 else if (Role_OR_Colour === 'Role') {
 
-                    let IndexOfRole = RolesFile.roles.nameID.indexOf(Arguments[1].toUpperCase());
-                    let HasRole = Message.member.roles.has(RolesFile.colours.ID[IndexOfRole]);
+                    let IndexOfRole = RolesFile.roles.nameID.indexOf(Arguments[1].toLowerCase());
+                    let HasRole = Message.member.roles.has(RolesFile.roles.ID[IndexOfRole]);
 
                     if (toReturn === 'Index') return IndexOfRole;
                     else if (toReturn === 'HasRole') return HasRole;
