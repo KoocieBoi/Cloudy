@@ -9,7 +9,7 @@ exports.SendLogChannelWelcomeMessage = async (Member) => {
     const LogChannelWelcomeMessage = new Discord.RichEmbed()
         .setColor(Configuration.embeds.JoinColor)
         .setAuthor("Someone had joined us! (^ _ ^)/", Member.user.avatarURL)
-        .setDescription(`Say hi to [${Member.user.username}](https://).\nI hope that you'll enjoy being part of the server, ${Member}`)
+        .setDescription(`Say hi to **[${Member.user.username}](https://)**.\nI hope that you'll enjoy being part of the server, ${Member}`)
         .setImage(Configuration.guild.JoinGIFLink)
         .setFooter(`User joined (${Member.user.id}#${Member.user.discriminator})`)
         .setTimestamp();
@@ -21,7 +21,7 @@ exports.SendLogChannelLeaveMessage = async (Member) => {
     const LogChannelLeaveMessage = new Discord.RichEmbed()
         .setColor(Configuration.embeds.LeaveColor)
         .setAuthor("Someone had left us! ( >д<)", Member.user.avatarURL)
-        .setDescription(`Sadly, [${Member.user.username}](https://) left us.\nI hope he'll be back soon, or not.`)
+        .setDescription(`Sadly, **[${Member.user.username}](https://)** left us.\nI hope he'll be back soon, or not.`)
         .setImage(Configuration.guild.LeaveGIFLink)
         .setFooter(`User left (${Member.user.id}#${Member.user.discriminator})`)
         .setTimestamp();

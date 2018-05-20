@@ -10,8 +10,8 @@ exports.guild = {
     AcceptRulesMessageID: "427868918745661450",
     MemberRoleID: "425023342530134018",
     logJLChannelID: "427823157303574528",
-    JoinGIFLink: "https://i.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.webp",
-    LeaveGIFLink: "https://i.giphy.com/media/L95W4wv8nnb9K/giphy.webp"
+    JoinGIFLink: "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",
+    LeaveGIFLink: "https://media.giphy.com/media/L95W4wv8nnb9K/giphy.gif"
 };
 
 exports.embeds = {
