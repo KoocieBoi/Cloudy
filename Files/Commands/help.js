@@ -1,17 +1,17 @@
 const CommandsFile = require("../commands.json");
 const EmbedsFile = require("../embeds");
 
-module.exports = (Message, Arguments) => {
-    if (Arguments[0] === undefined) EmbedsFile.SendHelpCommandNoArgumentsProvidedMessage(Message);
-    else if (Arguments[1] !== undefined) { EmbedsFile.SendCommandWrongUsage(Message, 2); return; }
+module.exports = (msg, args) => {
+    if (args[0] === undefined) EmbedsFile.SendHelpCommandNoArgumentsProvidedMessage(msg);
+    else if (args[1] !== undefined) { EmbedsFile.SendCommandWrongUsage(msg, 2); return; }
     else {
         let FoundCommand = false;
         CommandsFile.forEach((Command, Index) => {
-            if (Arguments[0] === Command.id && Arguments[0] !== CommandsFile[0].id) {
+            if (args[0] === Command.id && args[0] !== CommandsFile[0].id) {
                 FoundCommand = CommandsFile[Index];
-                EmbedsFile.SendHelpCommandCommandMessage(Message, FoundCommand);
+                EmbedsFile.SendHelpCommandCommandMessage(msg, FoundCommand);
             }
         });
-        if (FoundCommand === false) EmbedsFile.SendHelpCommandCommandNotFoundMessage(Message, Arguments[0]);
+        if (FoundCommand === false) EmbedsFile.SendHelpCommandCommandNotFoundMessage(msg, args[0]);
     }
 };

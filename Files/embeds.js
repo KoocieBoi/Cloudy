@@ -4,55 +4,55 @@ const CommandsFile = require("./commands.json");
 const RolesFile = require("./roles.json");
 const EmbedColor = Configuration.embeds.color;
 
-exports.SendLogChannelWelcomeMessage = async (Member) => {
-    let log = Member.guild.channels.get(Configuration.guild.logJLChannelID);
+exports.SendLogChannelWelcomeMessage = async (member) => {
+    let log = member.guild.channels.get(Configuration.guild.logJLChannelID);
     const LogChannelWelcomeMessage = new Discord.RichEmbed()
         .setColor(Configuration.embeds.JoinColor)
-        .setAuthor("Someone had joined us! (^ _ ^)/", Member.user.avatarURL)
-        .setDescription(`Say hi to **[${Member.user.username}](https://)**.\nI hope that you'll enjoy being part of the server, ${Member}`)
+        .setAuthor("Someone had joined us! (^ _ ^)/", member.user.avatarURL)
+        .setDescription(`Say hi to **[${member.user.username}](https://)**.\nI hope that you'll enjoy being part of the server, ${member}.`)
         .setImage(Configuration.guild.JoinGIFLink)
-        .setFooter(`User joined (${Member.user.id}#${Member.user.discriminator})`)
+        .setFooter(`User joined (${member.user.id}#${member.user.discriminator})`)
         .setTimestamp();
     await log.send({ embed: LogChannelWelcomeMessage });
 };
 
-exports.SendLogChannelLeaveMessage = async (Member) => {
-    let log = Member.guild.channels.get(Configuration.guild.logJLChannelID);
+exports.SendLogChannelLeaveMessage = async (member) => {
+    let log = member.guild.channels.get(Configuration.guild.logJLChannelID);
     const LogChannelLeaveMessage = new Discord.RichEmbed()
         .setColor(Configuration.embeds.LeaveColor)
-        .setAuthor("Someone had left us! ( >д<)", Member.user.avatarURL)
-        .setDescription(`Sadly, **[${Member.user.username}](https://)** left us.\nI hope he'll be back soon, or not.`)
+        .setAuthor("Someone had left us! ( >д<)", member.user.avatarURL)
+        .setDescription(`Sadly, **[${member.user.username}](https://)** left us.\nI hope he'll be back soon, or not.`)
         .setImage(Configuration.guild.LeaveGIFLink)
-        .setFooter(`User left (${Member.user.id}#${Member.user.discriminator})`)
+        .setFooter(`User left (${member.user.id}#${member.user.discriminator})`)
         .setTimestamp();
     await log.send({ embed: LogChannelLeaveMessage });
 };
 
-exports.SendCopyrightCommandMessage = async (Message) => {
+exports.SendCopyrightCommandMessage = async (msg) => {
     let CopyrightMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setAuthor("Icon")
         .setDescription("Bot's icon was made by [**Nick Roach**](https://www.elegantthemes.com/)\n[Icon](https://www.iconfinder.com/icons/1055089)\n[License (GPLv3)](https://www.gnu.org/copyleft/gpl.html)")
         .setTimestamp();
-    Message.channel.send({ embed: CopyrightMessage });
+    msg.channel.send({ embed: CopyrightMessage });
 };
 
-exports.SendCommandWrongUsage = async (Message, CommandNumber) => {
+exports.SendCommandWrongUsage = async (msg, CommandNumber) => {
     let CommandWrongUsage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setAuthor("Bad command usage!")
         .setDescription(`Usage: \n${CommandsFile[CommandNumber].usage}\n\nExample: \n${CommandsFile[CommandNumber].example}`)
-        .setFooter(`encountered by ${Message.author.username} on ${CommandsFile[CommandNumber].id}`)
+        .setFooter(`encountered by ${msg.author.username} on ${CommandsFile[CommandNumber].id}`)
         .setTimestamp();
-    Message.channel.send({ embed: CommandWrongUsage });
+    msg.channel.send({ embed: CommandWrongUsage });
 };
 
-exports.SendColourCommandListMessage = async (Message) => {
+exports.SendColourCommandListMessage = async (msg) => {
     
     function checkLevel(level) {
         switch (level) {
-        case 1: return Message.member.roles.has(RolesFile.colours.levels[0]);
-        case 10: return Message.member.roles.has(RolesFile.colours.levels[1]);
+        case 1: return msg.member.roles.has(RolesFile.colours.levels[0]);
+        case 10: return msg.member.roles.has(RolesFile.colours.levels[1]);
         default: break;
         }
     }
@@ -82,10 +82,10 @@ exports.SendColourCommandListMessage = async (Message) => {
         ColoursCommandListMessage.addField("Roles for Level 10", "not unlocked yet!");
     }
 
-    Message.channel.send({ embed: ColoursCommandListMessage });
+    msg.channel.send({ embed: ColoursCommandListMessage });
 };
 
-exports.SendRoleCommandMessage = async (Message, role, index) => {
+exports.SendRoleCommandMessage = async (msg, role, index) => {
     let RoleInfo = {
         name: role.name[index],
         nameID: role.nameID[index],
@@ -96,24 +96,24 @@ exports.SendRoleCommandMessage = async (Message, role, index) => {
         .setDescription(`You've received the \`${RoleInfo.name} (${RoleInfo.nameID})\` role.`)
         .setFooter("enjoy your role!")
         .setTimestamp();
-    await Message.member.addRole(RoleInfo.ID);
-    await Message.channel.send({ embed: RoleCommandMessage });
+    await msg.member.addRole(RoleInfo.ID);
+    await msg.channel.send({ embed: RoleCommandMessage });
 };
 
-exports.SendAlreadyHasColour = async (Message) => {
+exports.SendAlreadyHasColour = async (msg) => {
     let AlreadyHasColour = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setDescription("You already have a colour! You need to remove your colour with the `cloudy role remove <colour>` command before getting a new colour.")
         .setTimestamp();
-    await Message.channel.send({ embed: AlreadyHasColour });
+    await msg.channel.send({ embed: AlreadyHasColour });
 };
 
-exports.SendRoleListCommandMessage = async (Message) => {
+exports.SendRoleListCommandMessage = async (msg) => {
     
     function checkLevel(level) {
         switch (level) {
-        case 1: return Message.member.roles.has(RolesFile.colours.levels[0]);
-        case 10: return Message.member.roles.has(RolesFile.colours.levels[1]);
+        case 1: return msg.member.roles.has(RolesFile.colours.levels[0]);
+        case 10: return msg.member.roles.has(RolesFile.colours.levels[1]);
         default: break;
         }
     }
@@ -160,11 +160,11 @@ exports.SendRoleListCommandMessage = async (Message) => {
 
      // RoleListCommandMessage.addField("Roles", "osu! • `ID: o!`");
 
-    Message.channel.send({ embed: RoleListCommandMessage });
+    msg.channel.send({ embed: RoleListCommandMessage });
 
 };
 
-exports.SendRoleRemoveMessage = async (Message, role, index) => {
+exports.SendRoleRemoveMessage = async (msg, role, index) => {
     let RoleInfo = {
         name: role.name[index],
         nameID: role.nameID[index],
@@ -174,27 +174,27 @@ exports.SendRoleRemoveMessage = async (Message, role, index) => {
         .setColor(EmbedColor)
         .setDescription(`You've removed the \`${RoleInfo.name} (${RoleInfo.nameID})\` role from yourself.`)
         .setTimestamp();
-    await Message.channel.send({ embed: RoleRemoveMessage });
-    await Message.member.removeRole(RoleInfo.ID);
+    await msg.channel.send({ embed: RoleRemoveMessage });
+    await msg.member.removeRole(RoleInfo.ID);
 };
 
-exports.SendRoleRemoveNotHaveMessage = async (Message) => {
+exports.SendRoleRemoveNotHaveMessage = async (msg) => {
     let RoleRemoveNotHaveMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setDescription("You do not have that role!")
         .setTimestamp();
-    await Message.channel.send({ embed: RoleRemoveNotHaveMessage });
+    await msg.channel.send({ embed: RoleRemoveNotHaveMessage });
 };
 
-exports.SendRoleAlreadyHaveThat = async (Message) => {
+exports.SendRoleAlreadyHaveThat = async (msg) => {
     let RoleAlreadyHaveThat = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setDescription("You already have that role!")
         .setTimestamp();
-    await Message.channel.send({ embed: RoleAlreadyHaveThat });
+    await msg.channel.send({ embed: RoleAlreadyHaveThat });
 };
 
-exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
+exports.SendHelpCommandNoArgumentsProvidedMessage = async (msg) => {
     function MakeHelpStringByCategory (Category, Embed) {
         let CommandsFound = 0; // This will also be used as an index when listing the commands.
         let CommandsListFormat = "";
@@ -214,10 +214,10 @@ exports.SendHelpCommandNoArgumentsProvidedMessage = async (Message) => {
         .setFooter("cloudy help <id> for help about a command")
         .setTitle("List of commands");
     for (let i = 0; i < CategoryList.length ;i++) MakeHelpStringByCategory(CategoryList[i], HelpCommandNoArgumentsProvidedMessage);
-    Message.channel.send({embed: HelpCommandNoArgumentsProvidedMessage});
+    msg.channel.send({embed: HelpCommandNoArgumentsProvidedMessage});
 };
 
-exports.SendHelpCommandCommandMessage = async (Message, Command) => {
+exports.SendHelpCommandCommandMessage = async (msg, Command) => {
     const HelpCommandCommandMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
@@ -226,40 +226,40 @@ exports.SendHelpCommandCommandMessage = async (Message, Command) => {
         .addField("Usage", Command.usage)
         .addField("Example", Command.example)
         .setFooter(`Looking at the usage for the command ${Command.id}`);
-    Message.channel.send({embed: HelpCommandCommandMessage});
+    msg.channel.send({embed: HelpCommandCommandMessage});
 };
 
-exports.SendHelpCommandCommandNotFoundMessage = async (Message, Command) => {
+exports.SendHelpCommandCommandNotFoundMessage = async (msg, Command) => {
     const HelpCommandCommandNotFoundMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
         .setTitle("Command not found.")
         .setDescription(`The \`${Command}\` command was not found`);
-    Message.channel.send({embed: HelpCommandCommandNotFoundMessage});
+    msg.channel.send({embed: HelpCommandCommandNotFoundMessage});
 };
 
-exports.SendDogCommandMessage = (Message, Dog) => {
+exports.SendDogCommandMessage = (msg, Dog) => {
     const DogCommandMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Dog.data.message)
         .setTitle('Woof! 🐶')
-        .setFooter(`Dog image requested by ${Message.author.username}`);
-    Message.channel.send({embed: DogCommandMessage});
+        .setFooter(`Dog image requested by ${msg.author.username}`);
+    msg.channel.send({embed: DogCommandMessage});
 };
 
-exports.SendCatCommandMessage = (Message, Cat) => {
+exports.SendCatCommandMessage = (msg, Cat) => {
     const CatCommandMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Cat)
         .setTitle('Meow! 🐱')
-        .setFooter(`Cat image requested by ${Message.author.username}`);
-    Message.channel.send({embed: CatCommandMessage});
+        .setFooter(`Cat image requested by ${msg.author.username}`);
+    msg.channel.send({embed: CatCommandMessage});
 };
 
-exports.SendErrorWebhook = (Message, Client, EncounteredError, Command) => {
-    let LoggingChannel = Client.channels.get("439735218832670721");
+exports.SendErrorWebhook = (msg, client, EncounteredError, Command) => {
+    let LoggingChannel = client.channels.get("439735218832670721");
     LoggingChannel.fetchWebhooks()
         .then((Webhook) => {
             let Hook = Webhook.find("name", "Logging");
@@ -274,7 +274,7 @@ exports.SendErrorWebhook = (Message, Client, EncounteredError, Command) => {
                         "fields": [
                             {
                                 "name": "Info about the user",
-                                "value": `Username: ${Message.author.username}#${Message.author.discriminator}\nID: ${Message.author.id}`
+                                "value": `Username: ${msg.author.username}#${msg.author.discriminator}\nID: ${msg.author.id}`
                             },
                             {
                                 "name": "Error",
@@ -288,42 +288,42 @@ exports.SendErrorWebhook = (Message, Client, EncounteredError, Command) => {
         });
 };
 
-exports.SendCatFactCommandMessage = (Message, Fact) => {
+exports.SendCatFactCommandMessage = (msg, Fact) => {
     const CatFactCommandMessage = new Discord.RichEmbed()
         .setTitle('Cat fact 🐱')
         .setDescription(Fact)
         .setColor(EmbedColor)
-        .setFooter(`Cat fact requested by ${Message.author.username}`)
+        .setFooter(`Cat fact requested by ${msg.author.username}`)
         .setTimestamp();
-    Message.channel.send({embed: CatFactCommandMessage});
+    msg.channel.send({embed: CatFactCommandMessage});
 }
 
-exports.SendBirdCommandMessage = (Message, Bird) => {
+exports.SendBirdCommandMessage = (msg, Bird) => {
     const BirdCommandMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Bird)
         .setTitle('Chirp! 🐦')
-        .setFooter(`Bird image requested by ${Message.author.username}`);
-    Message.channel.send({embed: BirdCommandMessage});
+        .setFooter(`Bird image requested by ${msg.author.username}`);
+    msg.channel.send({embed: BirdCommandMessage});
 };
 
-exports.SendFoxCommandMessage = (Message, Fox) => {
+exports.SendFoxCommandMessage = (msg, Fox) => {
     const FoxCommandMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Fox)
         .setTitle('Wa-pa-pa-pa-pa-pa-pow! 🦊')
-        .setFooter(`Fox image requested by ${Message.author.username}`);
-    Message.channel.send({embed: FoxCommandMessage});
+        .setFooter(`Fox image requested by ${msg.author.username}`);
+    msg.channel.send({embed: FoxCommandMessage});
 };
 
-exports.SendShibeCommandMessage = (Message, Shibe) => {
+exports.SendShibeCommandMessage = (msg, Shibe) => {
     const ShibeCommandMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
         .setImage(Shibe)
         .setTitle('Wouf! 🐶')
-        .setFooter(`Shibe image requested by ${Message.author.username}`);
-    Message.channel.send({embed: ShibeCommandMessage});
+        .setFooter(`Shibe image requested by ${msg.author.username}`);
+    msg.channel.send({embed: ShibeCommandMessage});
 };

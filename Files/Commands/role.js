@@ -1,26 +1,26 @@
 const EmbedsFile = require("../embeds");
 const RolesFile = require("../roles.json");
 
-module.exports = async (Message, Arguments) => {
+module.exports = async (msg, args) => {
     let GetColoursCount = () => {
         let ColoursCount = 0;
         RolesFile.colours.ID.forEach((ID) => {
-            if (Message.member.roles.has(ID)) ColoursCount++;
+            if (msg.member.roles.has(ID)) ColoursCount++;
         }); return ColoursCount;
     };
-    if (Arguments[0] === undefined || Arguments[2] !== undefined) await EmbedsFile.SendCommandWrongUsage(Message, 3);
+    if (args[0] === undefined || args[2] !== undefined) await EmbedsFile.SendCommandWrongUsage(msg, 3);
     else {
-        if (Arguments[1] === undefined) {
-            if (Arguments[0].toLowerCase() === "list") await EmbedsFile.SendRoleListCommandMessage(Message);
-            else await EmbedsFile.SendCommandWrongUsage(Message, 3);
+        if (args[1] === undefined) {
+            if (args[0].toLowerCase() === "list") await EmbedsFile.SendRoleListCommandMessage(msg);
+            else await EmbedsFile.SendCommandWrongUsage(msg, 3);
         }
         else {
 
             function check(Role_OR_Colour, toReturn) {
                 if (Role_OR_Colour === 'Colour') {
 
-                    let IndexOfRole = RolesFile.colours.nameID.indexOf(Arguments[1].toUpperCase());
-                    let HasRole = Message.member.roles.has(RolesFile.colours.ID[IndexOfRole]);
+                    let IndexOfRole = RolesFile.colours.nameID.indexOf(args[1].toUpperCase());
+                    let HasRole = msg.member.roles.has(RolesFile.colours.ID[IndexOfRole]);
 
                     if (toReturn === 'Index') return IndexOfRole;
                     else if (toReturn === 'HasRole') return HasRole;
@@ -28,8 +28,8 @@ module.exports = async (Message, Arguments) => {
                 }
                 else if (Role_OR_Colour === 'Role') {
 
-                    let IndexOfRole = RolesFile.roles.nameID.indexOf(Arguments[1].toLowerCase());
-                    let HasRole = Message.member.roles.has(RolesFile.roles.ID[IndexOfRole]);
+                    let IndexOfRole = RolesFile.roles.nameID.indexOf(args[1].toLowerCase());
+                    let HasRole = msg.member.roles.has(RolesFile.roles.ID[IndexOfRole]);
 
                     if (toReturn === 'Index') return IndexOfRole;
                     else if (toReturn === 'HasRole') return HasRole;
@@ -37,29 +37,29 @@ module.exports = async (Message, Arguments) => {
                 }
             }
 
-            if (Arguments[0].toLowerCase() === "add") {
+            if (args[0].toLowerCase() === "add") {
                     if (check("Colour", "Index") >= 0) {
-                        if (GetColoursCount() === 0) await EmbedsFile.SendRoleCommandMessage(Message, RolesFile.colours, check("Colour", "Index"));
-                        else await EmbedsFile.SendAlreadyHasColour(Message);
+                        if (GetColoursCount() === 0) await EmbedsFile.SendRoleCommandMessage(msg, RolesFile.colours, check("Colour", "Index"));
+                        else await EmbedsFile.SendAlreadyHasColour(msg);
                     }
                     else if (check("Role", "Index") >= 0) {
-                        if (check("Role", "HasRole")) await EmbedsFile.SendRoleAlreadyHaveThat(Message);
-                        else await EmbedsFile.SendRoleCommandMessage(Message, RolesFile.roles, check("Role", "Index"));
+                        if (check("Role", "HasRole")) await EmbedsFile.SendRoleAlreadyHaveThat(msg);
+                        else await EmbedsFile.SendRoleCommandMessage(msg, RolesFile.roles, check("Role", "Index"));
                     }
-                    else await EmbedsFile.SendCommandWrongUsage(Message, 3);
+                    else await EmbedsFile.SendCommandWrongUsage(msg, 3);
             }
-            else if (Arguments[0] === "remove") {
+            else if (args[0] === "remove") {
                     if (check("Colour", "Index") >= 0) {
-                        if (check("Colour", "HasRole")) await EmbedsFile.SendRoleRemoveMessage(Message, RolesFile.colours, check("Colour", "Index"));
-                        else await EmbedsFile.SendRoleRemoveNotHaveMessage(Message);
+                        if (check("Colour", "HasRole")) await EmbedsFile.SendRoleRemoveMessage(msg, RolesFile.colours, check("Colour", "Index"));
+                        else await EmbedsFile.SendRoleRemoveNotHaveMessage(msg);
                     }
                     else if (check("Role", "Index") >= 0) {
-                        if (check("Role", "HasRole")) await EmbedsFile.SendRoleRemoveMessage(Message, RolesFile.roles, check("Role", "Index"));
-                        else await EmbedsFile.SendRoleRemoveNotHaveMessage(Message);
+                        if (check("Role", "HasRole")) await EmbedsFile.SendRoleRemoveMessage(msg, RolesFile.roles, check("Role", "Index"));
+                        else await EmbedsFile.SendRoleRemoveNotHaveMessage(msg);
                     }
-                    else await EmbedsFile.SendCommandWrongUsage(Message, 3);
+                    else await EmbedsFile.SendCommandWrongUsage(msg, 3);
             }
-            else await EmbedsFile.SendCommandWrongUsage(Message, 3);
+            else await EmbedsFile.SendCommandWrongUsage(msg, 3);
         }
     }
 };

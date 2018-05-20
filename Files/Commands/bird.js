@@ -2,14 +2,14 @@ const EmbedsFile = require("../embeds");
 const axios = require("axios");
 const Configuration = require("../configuration");
 
-module.exports = (Message, Arguments, Client) => {
-    if (Arguments[0] !== undefined) EmbedsFile.SendCommandWrongUsage(Message, 7);
+module.exports = (msg, args, client) => {
+    if (args[0] !== undefined) EmbedsFile.SendCommandWrongUsage(msg, 7);
     else {
         axios.get(Configuration.commands.bird.APIUrl)
             .then((Bird) => {
                 let Image = Bird.data[0];
-                EmbedsFile.SendBirdCommandMessage(Message, Image);
+                EmbedsFile.SendBirdCommandMessage(msg, Image);
             })
-            .catch((EncounteredError) => EmbedsFile.SendErrorWebhook(Message, Client, EncounteredError, "cl_bird"));
+            .catch((EncounteredError) => EmbedsFile.SendErrorWebhook(msg, client, EncounteredError, "cl_bird"));
     }
 };

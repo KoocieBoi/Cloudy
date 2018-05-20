@@ -1,3 +1,3 @@
 const EmbedsFile = require("../embeds");
 
-module.exports = (Member) => EmbedsFile.SendLogChannelWelcomeMessage(Member);
+module.exports = (member) => EmbedsFile.SendLogChannelWelcomeMessage(member);

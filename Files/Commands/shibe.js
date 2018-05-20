@@ -2,14 +2,14 @@ const EmbedsFile = require("../embeds");
 const axios = require("axios");
 const Configuration = require("../configuration");
 
-module.exports = (Message, Arguments, Client) => {
-    if (Arguments[0] !== undefined) EmbedsFile.SendCommandWrongUsage(Message, 9);
+module.exports = (msg, args, client) => {
+    if (args[0] !== undefined) EmbedsFile.SendCommandWrongUsage(msg, 9);
     else {
         axios.get(Configuration.commands.shibe.APIUrl)
             .then((Shibe) => {
                 let Image = Shibe.data[0];
-                EmbedsFile.SendShibeCommandMessage(Message, Image);
+                EmbedsFile.SendShibeCommandMessage(msg, Image);
             })
-            .catch((EncounteredError) => EmbedsFile.SendErrorWebhook(Message, Client, EncounteredError, "cl_shibe"));
+            .catch((EncounteredError) => EmbedsFile.SendErrorWebhook(msg, client, EncounteredError, "cl_shibe"));
     }
 };

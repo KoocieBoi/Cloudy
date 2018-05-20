@@ -1,11 +1,11 @@
 let Configuration = require("../configuration");
 
-module.exports = (Client, Reaction, User) => {
+module.exports = (client, Reaction, User) => {
     if (User.bot) { return; }
-    let Member = Client.guilds.get(Configuration.guild.ID).member(User.id);
+    let member = client.guilds.get(Configuration.guild.ID).member(User.id);
     if (Reaction.message.id === Configuration.guild.AcceptRulesMessageID) {
-        if (!Member.roles.has(Configuration.guild.MemberRoleID)) {
-            Member.addRole(Configuration.guild.MemberRoleID);
+        if (!member.roles.has(Configuration.guild.MemberRoleID)) {
+            member.addRole(Configuration.guild.MemberRoleID);
         }
         else console.log(`Some user somehow managed to react to the accept message w/o havin' access to it. (ID: ${User.id})`);
     }

@@ -1,6 +1,6 @@
-module.exports = (Client) => {
+module.exports = (client) => {
     console.log("I am ready!");
-    Client.user.setPresence({
+    client.user.setPresence({
         status: "online",
         game: { name: "your commands", type: "LISTENING" }
     });

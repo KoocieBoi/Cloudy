@@ -1,13 +1,13 @@
 const Discord = require("discord.js");
-const Client = new Discord.Client();
+const client = new Discord.Client();
 
 // Events
-const ReadyEvent = require("./Files/Events/ready");
-const MessageEvent = require("./Files/Events/message");
-const RawEvent = require("./Files/Events/raw");
-const MessageReactionAddEvent = require("./Files/Events/messageReactionAdd");
-const GuildMemberAddEvent = require("./Files/Events/guildMemberAdd");
-const GuildMemberRemoveEvent = require("./Files/Events/guildMemberRemove");
+const readyEvent = require("./Files/Events/ready");
+const messageEvent = require("./Files/Events/message");
+const raw = require("./Files/Events/raw");
+const messageReactionAdd = require("./Files/Events/messageReactionAdd");
+const guildMemberAdd = require("./Files/Events/guildMemberAdd");
+const guildMemberRemove = require("./Files/Events/guildMemberRemove");
 
 // AutoPing
 const http = require("http");
@@ -23,20 +23,16 @@ setInterval(() => {
 }, 280000);
 
 /*
-let logchannel = Client.channels.get("427823157303574528");
-let log = Client.channels.find("name", "join-leave");
+let logchannel = client.channels.get("427823157303574528");
+let log = client.channels.find("name", "join-leave");
 */
 
-Client.on("guildMemberAdd", (Member) => GuildMemberAddEvent(Member) );
+// Events
+client.on("guildMemberAdd", (member) => guildMemberAdd(member) );
+client.on("guildMemberRemove", (member) => guildMemberRemove(member) );
+client.on("message", (msg) => messageEvent(msg, client));
+client.on("messageReactionAdd", (reaction, user) => messageReactionAdd(client, reaction, user));
+client.on("raw", (event) => raw(client, event));
+client.on("ready", () => readyEvent(client));
 
-Client.on("guildMemberRemove", (Member) => GuildMemberRemoveEvent(Member) );
-
-Client.on("message", (Message) => MessageEvent(Message, Client));
-
-Client.on("messageReactionAdd", (Reaction, User) => MessageReactionAddEvent(Client, Reaction, User));
-
-Client.on("raw", (Event) => RawEvent(Client, Event));
-
-Client.on("ready", () => ReadyEvent(Client));
-
-Client.login(process.env.TOKEN);
+client.login(process.env.TOKEN);

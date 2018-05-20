@@ -2,14 +2,14 @@ const EmbedsFile = require("../embeds");
 const axios = require("axios");
 const Configuration = require("../configuration");
 
-module.exports = (Message, Arguments, Client) => {
-    if (Arguments[0] !== undefined) EmbedsFile.SendCommandWrongUsage(Message, 5);
+module.exports = (msg, args, client) => {
+    if (args[0] !== undefined) EmbedsFile.SendCommandWrongUsage(msg, 5);
     else {
         axios.get(Configuration.commands.cat.APIUrl)
             .then((Cat) => {
                 let Image = Cat.data[0];
-                EmbedsFile.SendCatCommandMessage(Message, Image);
+                EmbedsFile.SendCatCommandMessage(msg, Image);
             })
-            .catch((EncounteredError) => EmbedsFile.SendErrorWebhook(Message, Client, EncounteredError, "cl_cat"));
+            .catch((EncounteredError) => EmbedsFile.SendErrorWebhook(msg, client, EncounteredError, "cl_cat"));
     }
 };
