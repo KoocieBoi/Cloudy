@@ -1,10 +1,11 @@
 const EmbedsFile = require("../embeds");
 const axios = require("axios");
+const Configuration = require("../configuration");
 
 module.exports = (Message, Arguments, Client) => {
     if (Arguments[0] !== undefined) EmbedsFile.SendCommandWrongUsage(Message, 8);
     else {
-        axios.get("https://randomfox.ca/floof/")
+        axios.get(Configuration.commands.fox.APIUrl)
             .then((Fox) => {
                 let FormatImageURL = /\\+/g;
                 let FoxImage = Fox.data.image.replace(FormatImageURL, "");

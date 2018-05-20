@@ -1,10 +1,11 @@
 const EmbedsFile = require("../embeds");
 const axios = require("axios");
+const Configuration = require("../configuration");
 
 module.exports = (Message, Arguments, Client) => {
     if (Arguments[0] !== undefined) EmbedsFile.SendCommandWrongUsage(Message, 5);
     else {
-        axios.get("http://shibe.online/api/cats?count=1")
+        axios.get(Configuration.commands.cat.APIUrl)
             .then((Cat) => {
                 let Image = Cat.data[0];
                 EmbedsFile.SendCatCommandMessage(Message, Image);

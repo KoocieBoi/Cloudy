@@ -15,5 +15,3 @@ module.exports = (Message, Arguments) => {
         if (FoundCommand === false) EmbedsFile.SendHelpCommandCommandNotFoundMessage(Message, Arguments[0]);
     }
 };
-
-// separate cmd `cloudy help <command> usage` + de facut array cu categorii si de filtrat comenzi dupa facut embed dupa facut embed pt fiecare categorie + de facut embed pt comanda usage

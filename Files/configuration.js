@@ -6,6 +6,9 @@ exports.bot = {
 };
 
 exports.guild = {
+    ID: "424976122527088640",
+    AcceptRulesMessageID: "427868918745661450",
+    MemberRoleID: "425023342530134018",
     logJLChannelID: "427823157303574528",
 };
 
@@ -14,7 +17,24 @@ exports.embeds = {
 };
 
 exports.commands = {
-
+    bird: {
+        APIUrl: "http://shibe.online/api/birds?count=1"
+    },
+    cat: {
+        APIUrl: "http://shibe.online/api/cats?count=1"
+    },
+    catfact: {
+        APIUrl: "https://catfact.ninja/fact"
+    },
+    dog: {
+        APIUrl: "https://dog.ceo/api/breeds/image/random"
+    },
+    fox: {
+        APIUrl: "https://randomfox.ca/floof/"
+    },
+    shibe: {
+        APIUrl: "http://shibe.online/api/shibes?count=1"
+    }
 };
 
 /* --- Notes --- */
