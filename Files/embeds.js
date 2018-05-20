@@ -7,10 +7,11 @@ const EmbedColor = Configuration.embeds.color;
 exports.SendLogChannelWelcomeMessage = async (Member) => {
     let log = Member.guild.channels.get(Configuration.guild.logJLChannelID);
     const LogChannelWelcomeMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(Configuration.embeds.JoinColor)
         .setAuthor("Someone had joined us! (^ _ ^)/", Member.user.avatarURL)
-        .setDescription(`Say hi to __${Member.user.username}__.`)
-        .setFooter(`ID: ${Member.user.id} (${Member.user.discriminator})`)
+        .setDescription(`Say hi to [${Member.user.username}](https://).\nI hope that you'll enjoy being part of the server, ${Member}`)
+        .setImage(Configuration.guild.JoinGIFLink)
+        .setFooter(`User joined (${Member.user.id}#${Member.user.discriminator})`)
         .setTimestamp();
     await log.send({ embed: LogChannelWelcomeMessage });
 };
@@ -18,10 +19,11 @@ exports.SendLogChannelWelcomeMessage = async (Member) => {
 exports.SendLogChannelLeaveMessage = async (Member) => {
     let log = Member.guild.channels.get(Configuration.guild.logJLChannelID);
     const LogChannelLeaveMessage = new Discord.RichEmbed()
-        .setColor(EmbedColor)
+        .setColor(Configuration.embeds.LeaveColor)
         .setAuthor("Someone had left us! ( >д<)", Member.user.avatarURL)
-        .setDescription(`Sadly, __${Member.user.username}__ left us.`)
-        .setFooter(`ID: ${Member.user.id} (${Member.user.discriminator})`)
+        .setDescription(`Sadly, [${Member.user.username}](https://) left us.\nI hope he'll be back soon, or not.`)
+        .setImage(Configuration.guild.LeaveGIFLink)
+        .setFooter(`User left (${Member.user.id}#${Member.user.discriminator})`)
         .setTimestamp();
     await log.send({ embed: LogChannelLeaveMessage });
 };
