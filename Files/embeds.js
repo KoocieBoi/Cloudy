@@ -342,6 +342,7 @@ exports.SendWeatherCommandMessage = (msg, data) => {
 
     let futureweather = "";
     data[0].forecast.forEach((element, index) => {
+        /*
         let unformattedDate = element.date;
         let d = new Date(unformattedDate);
         
@@ -364,12 +365,13 @@ exports.SendWeatherCommandMessage = (msg, data) => {
         let month = months[unformattedMonth];
 
         let dateFormat = `**${dayname}**, the **${fullDay} of ${month}**`;
-
+        */
+        let dayname = element.day;
         let lowtemp = element.low;
         let maxtemp = element.high;
         let status = element.skytextday.toLowerCase();
 
-        futureweather += `[•](https://) ${dateFormat} the temperatures will be between **${lowtemp}°C** and **${maxtemp}°C**, also, it will be **${status}**.\n`
+        futureweather += `[•](https://) **${dayname}**, the temperatures will be between **${lowtemp}°C** and **${maxtemp}°C**, also, it will be **${status}**.\n`
     });
 
     let WeatherCommandMessage = new Discord.RichEmbed()
