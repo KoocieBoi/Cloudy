@@ -340,11 +340,44 @@ exports.SendWeatherCommandMessage = (msg, data) => {
     let skytext = data[0].current.skytext.toLowerCase();
     let footer = `Viewing weather info for ${name} • It's ${skytext} today.`;
 
+    let futureweather = "";
+    data[0].forecast.forEach((element, index) => {
+        let unformattedDate = element.date;
+        let d = new Date(unformattedDate);
+        
+        let dayname = element.day;
+        let day = d.getDay().toString();
+        let dayending = "";
+        let days = {
+            "end-ST": ["1", "21", "31"],
+            "end-ND": ["2", "22"],
+            "end-RD": ["3", "23"]
+        };
+        if (days.end-ST.indexOf(day) !== -1) dayending = "st";
+        else if (days.end-ND.indexOf(day) !== -1) dayending = "nd";
+        else if (days.end-RD.indexOf(day) !== -1) dayending = "rd";
+        else dayending = "th";
+        let fullDay = day + dayending;
+
+        let unformattedMonth = d.getMonth();
+        let months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+        let month = months[months.indexOf(unformattedMonth)];
+
+        let dateFormat = `**${dayname}**, the **${fullDay} of ${month}**`;
+
+        let lowtemp = element.low;
+        let maxtemp = element.high;
+        let status = element.skytext.toLowerCase();
+
+        futureweather += `[•](https://) ${dateFormat} the met temperatures will be between the values of **${lowtemp}°C** and **${maxtemp}°C**, also, it will be **${status}**.\n`
+    });
+
     let WeatherCommandMessage = new Discord.RichEmbed()
         .setThumbnail(image)
         .setColor(EmbedColor)
         .addField("Temperature", temperature)
         .addField("Humidity and wind", humidityandwind)
+        .addField("Forecast for the next days", futureweather)
         .setFooter(footer)
         .setTimestamp();
 

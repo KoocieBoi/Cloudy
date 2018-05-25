@@ -10,7 +10,10 @@ module.exports = (msg, args, client) => {
             degreeType: "C"
         }, (err, result) => {
             if (err) Embeds.SendErrorWebhook(msg, client, err, "cl_weather");
-            else Embeds.SendWeatherCommandMessage(msg, result); 
+            else { 
+                console.log(result);
+                Embeds.SendWeatherCommandMessage(msg, result);
+            } 
         });
     }
 };
