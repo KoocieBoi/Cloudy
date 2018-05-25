@@ -361,7 +361,7 @@ exports.SendWeatherCommandMessage = (msg, data) => {
 
         let unformattedMonth = d.getMonth();
         let months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
-        let month = months[months.indexOf(unformattedMonth)];
+        let month = months[unformattedMonth];
 
         let dateFormat = `**${dayname}**, the **${fullDay} of ${month}**`;
 
