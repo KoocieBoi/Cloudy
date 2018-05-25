@@ -330,9 +330,6 @@ exports.SendShibeCommandMessage = (msg, Shibe) => {
 
 exports.SendWeatherCommandMessage = (msg, data) => {
     let name = data[0].location.name;
-    let latitude = data[0].location.lat;
-    let longitude = data[0].location.long;
-    let location = `${name} (${latitude}, ${longitude})`;
     let temp = data[0].current.temperature;
     let feelslike = data[0].current.feelslike;
     let temperature = `[•](https://) **${temp}°C** and it's feeling like **${feelslike}°C**.`;
@@ -341,7 +338,7 @@ exports.SendWeatherCommandMessage = (msg, data) => {
     let humidityandwind = `[•](https://) The air's humidity is **${humidity}**.\n[•](https://) The wind blows at the speed of **${windspeed}**.`;
     let image = data[0].current.imageUrl;
     let skytext = data[0].current.skytext.toLowerCase();
-    let footer = `Viewing weather info for ${location} • It's ${skytext} today.`;
+    let footer = `Viewing weather info for ${name} • It's ${skytext} today.`;
 
     let WeatherCommandMessage = new Discord.RichEmbed()
         .setThumbnail(image)
