@@ -349,13 +349,13 @@ exports.SendWeatherCommandMessage = (msg, data) => {
         let day = d.getDay().toString();
         let dayending = "";
         let days = {
-            "end-ST": ["1", "21", "31"],
-            "end-ND": ["2", "22"],
-            "end-RD": ["3", "23"]
+            endST: ["1", "21", "31"],
+            endND: ["2", "22"],
+            endRD: ["3", "23"]
         };
-        if (days.end-ST.indexOf(day) !== -1) dayending = "st";
-        else if (days.end-ND.indexOf(day) !== -1) dayending = "nd";
-        else if (days.end-RD.indexOf(day) !== -1) dayending = "rd";
+        if (days.endST.indexOf(day) !== -1) dayending = "st";
+        else if (days.endND.indexOf(day) !== -1) dayending = "nd";
+        else if (days.endRD.indexOf(day) !== -1) dayending = "rd";
         else dayending = "th";
         let fullDay = day + dayending;
 
