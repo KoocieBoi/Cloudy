@@ -348,7 +348,8 @@ exports.SendWeatherCommandMessage = (msg, data) => {
         .setColor(EmbedColor)
         .addField("Temperature", temperature)
         .addField("Humidity and wind", humidityandwind)
-        .setFooter(footer);
+        .setFooter(footer)
+        .setTimestamp();
 
     msg.channel.send({ embed: WeatherCommandMessage });
 };
