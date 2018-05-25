@@ -74,5 +74,13 @@
         "description": "Gives you a random image of a shibe dog.",
         "usage": "`<command>`",
         "example": "`cloudy shibe`"
+    },
+    {
+        "id": "cl_weather",
+        "name": "Weather",
+        "category": "Miscellaneous",
+        "description": "Shows you the weather for the provided location or zipcode.",
+        "usage": "`<command> <location | zipcode>`",
+        "example": "`cloudy weather Bucharest`"
     }
 ]

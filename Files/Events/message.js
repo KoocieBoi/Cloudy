@@ -7,6 +7,7 @@ const CatfactCommand = require("../Commands/catfact");
 const BirdCommand = require("../Commands/bird");
 const FoxCommand = require("../Commands/fox");
 const ShibeCommand = require("../Commands/shibe");
+const WeatherCommand = require("../Commands/weather");
 const Configuration = require("../configuration");
 
 module.exports = (msg, client) => {
@@ -36,4 +37,5 @@ module.exports = (msg, client) => {
     if (cmd === "bird") BirdCommand(msg, args, client);
     if (cmd === "fox") FoxCommand(msg, args, client);
     if (cmd === "shibe") ShibeCommand(msg, args, client);
+    if (cmd === "weather") WeatherCommand(msg, args, client);
 };
