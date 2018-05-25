@@ -12,8 +12,9 @@ module.exports = (msg, args, client) => {
             if (err) Embeds.SendErrorWebhook(msg, client, err, "cl_weather");
             else {
                 let data = JSON.parse(result);
+                console.log(data);
                 
-                Embeds.SendWeatherCommandMessage(msg, data);
+                // Embeds.SendWeatherCommandMessage(msg, data);
             } 
         });
     }
