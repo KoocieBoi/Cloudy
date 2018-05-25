@@ -346,12 +346,12 @@ exports.SendWeatherCommandMessage = (msg, data) => {
         let d = new Date(unformattedDate);
         
         let dayname = element.day;
-        let day = d.getDay().toString();
+        let day = d.getDay();
         let dayending = "";
         let days = {
-            endST: ["1", "21", "31"],
-            endND: ["2", "22"],
-            endRD: ["3", "23"]
+            endST: [1, 21, 31],
+            endND: [2, 22],
+            endRD: [3, 23]
         };
         if (days.endST.indexOf(day) !== -1) dayending = "st";
         else if (days.endND.indexOf(day) !== -1) dayending = "nd";
@@ -369,7 +369,7 @@ exports.SendWeatherCommandMessage = (msg, data) => {
         let maxtemp = element.high;
         let status = element.skytextday.toLowerCase();
 
-        futureweather += `[•](https://) ${dateFormat} the met temperatures will be between the values of **${lowtemp}°C** and **${maxtemp}°C**, also, it will be **${status}**.\n`
+        futureweather += `[•](https://) ${dateFormat} the temperatures will be between **${lowtemp}°C** and **${maxtemp}°C**, also, it will be **${status}**.\n`
     });
 
     let WeatherCommandMessage = new Discord.RichEmbed()
