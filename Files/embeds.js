@@ -367,7 +367,7 @@ exports.SendWeatherCommandMessage = (msg, data) => {
 
         let lowtemp = element.low;
         let maxtemp = element.high;
-        let status = element.skytext.toLowerCase();
+        let status = element.skytextday.toLowerCase();
 
         futureweather += `[•](https://) ${dateFormat} the met temperatures will be between the values of **${lowtemp}°C** and **${maxtemp}°C**, also, it will be **${status}**.\n`
     });
