@@ -1,5 +1,5 @@
 let Embeds = require("../embeds");
-let weather = require("weather.js");
+let weather = require("weather-js");
 module.exports = (msg, args, client) => {
     if (args[0] === undefined) Embeds.SendCommandWrongUsage(msg, 10);
     else {
