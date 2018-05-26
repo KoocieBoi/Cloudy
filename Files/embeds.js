@@ -385,3 +385,13 @@ exports.SendWeatherCommandMessage = (msg, data) => {
 
     msg.channel.send({ embed: WeatherCommandMessage });
 };
+
+exports.SendWeatherCommandLocationNotFoundMessage = (msg) => {
+    let WeatherCommandLocationNotFoundMessage = new Discord.RichEmbed()
+        .setColor(EmbedColor)
+        .setTimestamp()
+        .setTitle("Location not found")
+        .setDescription("Weather info was not found for the provided location.");
+    
+    msg.channel.send({ embed: WeatherCommandLocationNotFoundMessage });
+};

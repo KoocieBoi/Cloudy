@@ -10,6 +10,10 @@ module.exports = (msg, args, client) => {
             degreeType: "C"
         }, (err, result) => {
             if (err) Embeds.SendErrorWebhook(msg, client, err, "cl_weather");
+            if (result.length === 0) {
+                Embeds.SendWeatherCommandLocationNotFoundMessage(msg);
+                return;
+            }
             else { 
                 console.log(result);
                 Embeds.SendWeatherCommandMessage(msg, result);
