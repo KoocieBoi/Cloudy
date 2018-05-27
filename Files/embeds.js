@@ -420,7 +420,7 @@ exports.sendRPSMessage = (msg, userChoice, botChoice, winner) => {
     }
 
     RPSMessage.addField("Who chose what?", `${userChoice}\n${botChoice}`);
-    RPSMessage.addField("Winners", fieldWinnerList);
+    RPSMessage.addField("Winner(s)", fieldWinnerList);
     RPSMessage.setFooter(`${msg.author.username} vs Cloudy • ${footerWonMessage}`, msg.author.avatarURL);
 
     msg.channel.send({ embed: RPSMessage });
