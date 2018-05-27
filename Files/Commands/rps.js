@@ -4,13 +4,14 @@ module.exports = (msg, args) => {
     function returnOptionMessage(optionVar, typeOfUser) {
         let userMessage = "";
         let optionMessage = "";
-        let finalMessage = `[•](https://) ${userMessage} ${optionMessage}.`;
         if (typeOfUser === "user") userMessage = "**You**";
         else if (typeOfUser === "bot") userMessage = "**I**";
 
         if (optionVar === "r") optionMessage = "chose **Rock** :gem:";
         else if (optionVar === "p") optionMessage = "chose **Paper** :scroll:";
         else if (optionVar === "s") optionMessage = "chose **Scissors** :scissors:";
+
+        let finalMessage = `[•](https://) ${userMessage} ${optionMessage}.`;
 
         return finalMessage;
     }
