@@ -82,5 +82,13 @@
         "description": "Shows you the weather for the provided location or zipcode.",
         "usage": "`<command> <location | zipcode>`",
         "example": "`cloudy weather Bucharest`"
+    },
+    {
+        "id": "cl_rps",
+        "name": "Rock–Paper–Scissors",
+        "category": "Miscellaneous",
+        "description": "Play a game of Rock-Paper-Scissors with me!",
+        "usage": "`<command> <rock | paper | scissors>`",
+        "example": "`cloudy rock`\n`cloudy p`"
     }
 ]

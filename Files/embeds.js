@@ -395,3 +395,33 @@ exports.SendWeatherCommandLocationNotFoundMessage = (msg) => {
     
     msg.channel.send({ embed: WeatherCommandLocationNotFoundMessage });
 };
+
+exports.sendRPSMessage = (msg, userChoice, botChoice, winner) => {
+    let botMention = `<@${Configuration.bot.id}>`;
+    let userMention = msg.member;
+    
+    let RPSMessage = new Discord.RichEmbed()
+        .setColor(EmbedColor)
+        .setTimestamp();
+
+    let footerWonMessage = "";
+    let fieldWinnerList = "";
+    if (winner === "both") {
+        footerWonMessage = "It's a tie."
+        fieldWinnerList = `${userMention}\n${botMention}`;
+    }
+    else if (winner === "user") {
+        footerWonMessage = "You won.";
+        fieldWinnerList = userMention;
+    }
+    else if (winner === "bot") {
+        footerWonMessage = "You lost.";
+        fieldWinnerList = botMention;
+    }
+
+    RPSMessage.addField("Who chose what?", `${userChoice}\n${botChoice}`);
+    RPSMessage.addField("Winners", fieldWinnerList);
+    RPSMessage.setFooter(`${msg.author.username} vs Cloudy • ${footerWonMessage}`, msg.author.avatarURL);
+
+    msg.channel.send({ embed: RPSMessage });
+};
