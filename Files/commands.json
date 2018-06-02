@@ -90,5 +90,14 @@
         "description": "Play a game of Rock-Paper-Scissors with me!",
         "usage": "`<command> <rock | paper | scissors>`",
         "example": "`cloudy rock`\n`cloudy p`"
+    },
+    {
+        "id": "cl_avatar",
+        "name": "Avatar",
+        "category": "Miscellaneous",
+        "description": "Get your or someone's avatar.",
+        "usage": "`<command> [userMention]`",
+        "example": "`cloudy avatar`\n`cloudy avatar @Koocie`",
+        "no": 12
     }
 ]

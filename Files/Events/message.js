@@ -9,6 +9,7 @@ const FoxCommand = require("../Commands/fox");
 const ShibeCommand = require("../Commands/shibe");
 const WeatherCommand = require("../Commands/weather");
 const RPSCommand = require("../Commands/rps");
+const AvatarCommand = require("../Commands/avatar");
 const Configuration = require("../configuration");
 
 module.exports = (msg, client) => {
@@ -40,4 +41,5 @@ module.exports = (msg, client) => {
     if (cmd === "shibe") ShibeCommand(msg, args, client);
     if (cmd === "weather") WeatherCommand(msg, args, client);
     if (cmd === "rps") RPSCommand(msg, args);
+    if (cmd === "avatar") AvatarCommand(msg, args);
 };

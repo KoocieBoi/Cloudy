@@ -425,3 +425,13 @@ exports.sendRPSMessage = (msg, userChoice, botChoice, winner) => {
 
     msg.channel.send({ embed: RPSMessage });
 };
+
+exports.SendAvatarCommandMessage = (msg, user) => {
+    let AvatarCommandMessage = new Discord.RichEmbed()
+        .setColor(EmbedColor)
+        .setTimestamp()
+        .setImage(user.avatarURL)
+        .setFooter(`viewing ${user.username}'s avatar.`);
+    
+    msg.channel.send({ embed: AvatarCommandMessage });
+};
