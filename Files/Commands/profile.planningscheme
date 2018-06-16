@@ -1,0 +1,89 @@
+/*
+* Database
+*/
+
+database = *
+* Tables & Columns structure [
+	- <--------> Bio (1) <-------->
+	- User ID
+	- Age
+	- Day 'n' month
+	- Name
+	- ...
+	- Other info
+	
+	- <--------> Social (2) <-------->
+	- User ID
+	- Discord server
+	- Instagram
+	- Twitter
+	- ...
+	- Other social (command for each)
+	
+	- <--------> Games (3) <-------->
+	- User ID
+	- Game 1
+	- profile link / name Game 1
+    - ...
+    
+    - <--------> Settings <-------->
+    - User ID
+    - (1) => Has Bio
+    - (1) => Has (...)
+    - (2) => Has SocialMedia
+    - (2) => Has (...)
+    - (3) => -''-
+	// option to add games to the database and mention if they have profile names / links and a way to add them quickly into the db
+]
+
+/*
+* Command
+*/
+
+require (Embeds) (d.js) (Configuration)
+
+function retrieveUserID() [
+    let user
+    if !args[2] => user = messageAuthor
+    else #
+        => if args[2] (is) mention => user = mention
+        => else => user = undefined 
+
+    return user
+]
+function getProfile(user, toGet) [
+    embeds [
+        1 => Bio
+        2 => Social
+        3 => Games
+    ]
+    if toGet (equals) 'all' => (send) => embeds/1+2+3
+    else if toGet (equals) 'bio' => (send) => embeds/1
+    else if toGet (equals) 'social' => (send) => embeds/2
+    else if toGet (equals) 'games' => (send) => embeds/3
+
+    + if (restricted) => (send) => restrictedMessage()
+]
+if args[0] (equals) 'profile' #
+    => if args[0] (equals) 'show' #
+        => if !retrieveUserID() Embeds/SendWrongUsageCommandMessage()
+        => else => getProfile(retrieveUserID(), 'all')
+    => else if args[0] (equals) 'showBio' #
+        => if !retrieveUserID() Embeds/SendWrongUsageCommandMessage()
+        => else => getProfile(retrieveUserID(), 'bio')
+    => else if args[0] (equals) 'showSocial' || 'showGames' => -''-
+    => else if args[0] (equals) 'admin' #
+        => if (Configuration/commands/profile/admins indexOf(messageAuthor) (equals) -1) => Embeds/SendWrongUsageCommandMessage()
+        => else if (Configuration/commands/profile/admins indexOf(messageAuthor) (equals) -1) #
+            => if args[2] (equals) 'restrict' #
+                  => if args[3] (is) mention #
+                        => if (alreadyRestricted) sendErrorMessage()
+                        => else #
+                            => (restrict) => UserID
+                            => (send - publicLogs) Embeds/SendRestrictMessage(reason), reason = args[join - (0 -> 3)]
+                            => deleteMessage()
+                            => (send - privateLogs) Embeds/SendLogMessage(reason)
+                  => else => Embeds/SendWrongUsageCommandMessage()
+            => if args[2] (equals) 'unrestrict' -''-
+
+// State: Unfinished

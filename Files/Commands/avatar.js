@@ -14,8 +14,12 @@ module.exports = (msg, args) => {
         else return true;
     }
 
+    let finalUser;
+    if (user.mention) finalUser = user.mention.user;
+    else finalUser = user.author;
+
     if (args[1] || !returnArgsIsMention()) Embeds.SendCommandWrongUsage(msg, 12);
-    else if (args[0] === user.mention.toString()) Embeds.SendAvatarCommandMessage(msg, user.mention);
+    else if (args[0] === user.mention.toString()) Embeds.SendAvatarCommandMessage(msg, finalUser);
     else if (!args[0]) Embeds.SendAvatarCommandMessage(msg, user.author);  
 
 };

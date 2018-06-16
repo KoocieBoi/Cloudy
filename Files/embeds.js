@@ -426,11 +426,7 @@ exports.sendRPSMessage = (msg, userChoice, botChoice, winner) => {
     msg.channel.send({ embed: RPSMessage });
 };
 
-exports.SendAvatarCommandMessage = (msg, user) => {
-    let finalUser;
-    if (user.user) finalUser = user.user;
-    else finalUser = user;
-
+exports.SendAvatarCommandMessage = (msg, finalUser) => {
     let AvatarCommandMessage = new Discord.RichEmbed()
         .setColor(EmbedColor)
         .setTimestamp()
