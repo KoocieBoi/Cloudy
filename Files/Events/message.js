@@ -43,7 +43,7 @@ module.exports = (msg, client) => {
     if (cmd === "rps") RPSCommand(msg, args);
     if (cmd === "avatar") AvatarCommand(msg, args);
     if (cmd === "test") {
-        require("../embed-utility")(
+        let e = require("../embed-utility")(
             "#FFAAFF",
             "Koocie",
             null,
@@ -72,5 +72,6 @@ module.exports = (msg, client) => {
                 false
             ]
         )
+        msg.channel.send(e);
     }
 };
