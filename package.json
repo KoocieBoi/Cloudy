@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "discord.js": "^11.3.2",
+    "eslint": "^5.0.0",
     "express": "^4.16.3",
     "weather-js": "^2.0.0",
     "xml-parse-from-string": "^1.0.1",
