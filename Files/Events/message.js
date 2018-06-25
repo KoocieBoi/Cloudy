@@ -42,4 +42,35 @@ module.exports = (msg, client) => {
     if (cmd === "weather") WeatherCommand(msg, args, client);
     if (cmd === "rps") RPSCommand(msg, args);
     if (cmd === "avatar") AvatarCommand(msg, args);
+    if (cmd === "test") {
+        require("../embed-utility")(
+            "#FFAAFF",
+            "Koocie",
+            null,
+            null,
+            "Test",
+            null,
+            null,
+            "https://pkief.gallerycdn.vsassets.io/extensions/pkief/material-icon-theme/3.5.0/1527764102171/Microsoft.VisualStudio.Services.Icons.Default",
+            "hey",
+            null,
+            true,
+            [
+                // Field 1
+                "ok",
+                "okei",
+                true,
+        
+                // Field 2
+                "ok2",
+                "okei2",
+                false,
+                
+                //Field 3
+                "okeiiii",
+                "oaka",
+                false
+            ]
+        )
+    }
 };
