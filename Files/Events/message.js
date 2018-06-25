@@ -46,25 +46,25 @@ module.exports = (msg, client) => {
         let e = require("../embed-utility")(
             "#FFAAFF",
             "Koocie",
-            null,
-            null,
+            "https://static.apkthing.com/uploads/posts/2015-07/thumbs/1437616476_material-design-icons321.png",
+            "https://google.ro",
             "Test",
-            null,
-            null,
-            "https://pkief.gallerycdn.vsassets.io/extensions/pkief/material-icon-theme/3.5.0/1527764102171/Microsoft.VisualStudio.Services.Icons.Default",
+            "Hello there!",
+            "https://static.apkthing.com/uploads/posts/2015-07/thumbs/1437616476_material-design-icons321.png",
+            "https://static.apkthing.com/uploads/posts/2015-07/thumbs/1437616476_material-design-icons321.png",
             "hey",
-            null,
+            "https://static.apkthing.com/uploads/posts/2015-07/thumbs/1437616476_material-design-icons321.png",
             true,
             [
                 // Field 1
                 "ok",
                 "okei",
-                true,
+                false,
         
                 // Field 2
                 "ok2",
                 "okei2",
-                false,
+                true,
                 
                 //Field 3
                 "okeiiii",

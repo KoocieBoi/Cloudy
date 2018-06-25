@@ -11,7 +11,7 @@ module.exports = (color, author, authorImage, authorURL, title, description, ima
     if (thumbnail) e.setThumbnail();
     if (footerText) e.setFooter(footerText, footerImage || null);
     if (fields) {
-        for (let i = 0; i <= fields.length - 2; i = i + 3) {
+        for (let i = 0; i < fields.length; i = i + 3) {
             e.addField(fields[i], fields[i+1], fields[i+2]);
         }
     }
