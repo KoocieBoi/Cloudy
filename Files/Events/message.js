@@ -45,44 +45,18 @@ module.exports = (msg, client) => {
 	if (cmd === "test") {
 		let e = require("../embed-utility")(
 			{
-				author: {
-					text: `${msg.author.username}#${msg.author.id}`,
-					image: msg.author.avatarURL,
-					url: "https://google.ro"
-				},
-				header: {
-					title: "Hello",
-					description: "`everyone`",
-				},
 				footer: {
-					text: "this is a test embed",
-					image: msg.author.avatarURL,
-					time: true
-				},
-				fields: [
-					{
-						title: "unu",
-						content: "`doi`",
-						inline: false
-					},
-					{
-						title: "i like",
-						content: "`apples`",
-						inline: true
-					},
-					{
-						title: "buna",
-						content: "*ziua*",
-						inline: false
-					}
-
-				],
-				images: {
-					thumbnail: msg.author.avatarURL,
-					big: msg.author.avatarURL
+					text: "this is a test embed"
 				}
 			}
 		);
-		msg.channel.send(e);
+		let e2 = require("../embed-utility")(
+			{
+				footer: {
+					time: true
+				}
+			}
+		);
+		msg.channel.send({embed: e + e2});
 	}
 };

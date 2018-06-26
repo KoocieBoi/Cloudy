@@ -83,7 +83,7 @@ module.exports = (embedProperties) => {
 		if (images.thumbnail) e.setThumbnail(images.thumbnail);
 		if (images.big) e.setImage(images.big);
 	}
-	return {embed: e};
+	return e;
 };
 
 /*
