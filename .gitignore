@@ -1,5 +1,3 @@
 .vscode/launch.json
 .vscode/settings.json
-.eslintrc.yml
-.eslintrc.js
 node_modules
