@@ -67,7 +67,7 @@ module.exports = (embedProperties) => {
 	if (embedProperties.fields) {
 		let fields = embedProperties.fields;
 		if (fields.length !== 0) {
-			for (let i = 0; i <= fields.length; i++){
+			for (let i = 0; i < fields.length; i++){
 				e.addField(
 					fields[i].title,
 					fields[i].content,
