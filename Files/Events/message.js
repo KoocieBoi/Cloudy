@@ -77,7 +77,7 @@ module.exports = (msg, client) => {
 					}
 
 				],
-				image: {
+				images: {
 					thumbnail: msg.author.avatarURL,
 					big: msg.author.avatarURL
 				}
