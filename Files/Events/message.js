@@ -20,7 +20,7 @@ module.exports = (msg, client) => {
 	}
 
 	// Command Handler
-	fs.readdirSync("../commands/", (err, files) => {
+	fs.readdir("./Files/Commands", (err, files) => {
 		if (err) {
 			console.log(err);
 			return;
@@ -29,10 +29,8 @@ module.exports = (msg, client) => {
 			console.log("No commands could be found.");
 			return;
 		}
-
-		let filesFilter = files.filter((file) => file.split(".").pop() === "js");
 	
-		filesFilter.forEach((file, index) => {
+		files.forEach((file, index) => {
 			let reqFile = require(`../Commands/${file}`);
 			reqFile(client, msg, cmd, args);
 		});
