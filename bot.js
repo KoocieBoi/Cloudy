@@ -22,11 +22,6 @@ setInterval(() => {
     http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
 
-/*
-let logchannel = client.channels.get("427823157303574528");
-let log = client.channels.find("name", "join-leave");
-*/
-
 // Events
 client.on("guildMemberAdd", (member) => guildMemberAdd(member) );
 client.on("guildMemberRemove", (member) => guildMemberRemove(member) );

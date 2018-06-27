@@ -1,16 +1,5 @@
-const CopyrightCommand = require("../Commands/copyright");
-const RoleCommand = require("../Commands/role");
-const HelpCommand = require("../Commands/help");
-const DogCommand = require("../Commands/dog");
-const CatCommand = require("../Commands/cat");
-const CatfactCommand = require("../Commands/catfact");
-const BirdCommand = require("../Commands/bird");
-const FoxCommand = require("../Commands/fox");
-const ShibeCommand = require("../Commands/shibe");
-const WeatherCommand = require("../Commands/weather");
-const RPSCommand = require("../Commands/rps");
-const AvatarCommand = require("../Commands/avatar");
 const Configuration = require("../configuration");
+const fs = require("fs");
 
 module.exports = (msg, client) => {
 	if (msg.author.bot || msg.channel.type !== "text") { return; }
@@ -30,33 +19,20 @@ module.exports = (msg, client) => {
 		cmd = args.shift().toLowerCase();
 	}
 
-	if (cmd === "copyright") CopyrightCommand(msg, args); 
-	if (cmd === "role") RoleCommand(msg, args);
-	if (cmd === "help") HelpCommand(msg, args);
-	if (cmd === "dog") DogCommand(msg, args, client);
-	if (cmd === "cat") CatCommand(msg, args, client);
-	if (cmd === "catfact") CatfactCommand(msg, args, client);
-	if (cmd === "bird") BirdCommand(msg, args, client);
-	if (cmd === "fox") FoxCommand(msg, args, client);
-	if (cmd === "shibe") ShibeCommand(msg, args, client);
-	if (cmd === "weather") WeatherCommand(msg, args, client);
-	if (cmd === "rps") RPSCommand(msg, args);
-	if (cmd === "avatar") AvatarCommand(msg, args);
-	if (cmd === "test") {
-		let e = require("../embed-utility")(
-			{
-				footer: {
-					text: "this is a test embed"
-				}
-			}
-		);
-		let e2 = require("../embed-utility")(
-			{
-				footer: {
-					time: true
-				}
-			}
-		);
-		msg.channel.send({embed: e + e2});
-	}
+	// Command Handler
+	fs.readdir("../Commands", (err, files) => {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		if (files.length <= 0) {
+			console.log("No commands could be found.");
+			return;
+		}
+	
+		files.forEach((file, index) => {
+			let reqFile = require(`../Commands/${file}`);
+			reqFile(client, msg, cmd, args);
+		});
+	});
 };
