@@ -29,8 +29,10 @@ module.exports = (msg, client) => {
 			console.log("No commands could be found.");
 			return;
 		}
+
+		let filesFilter = files.filter((file) => file.split(".").pop() === "js");
 	
-		files.forEach((file, index) => {
+		filesFilter.forEach((file, index) => {
 			let reqFile = require(`../Commands/${file}`);
 			reqFile(client, msg, cmd, args);
 		});
