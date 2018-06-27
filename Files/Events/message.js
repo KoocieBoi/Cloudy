@@ -20,7 +20,7 @@ module.exports = (msg, client) => {
 	}
 
 	// Command Handler
-	fs.readdir("../Commands", (err, files) => {
+	fs.readdir("../Commands/", (err, files) => {
 		if (err) {
 			console.log(err);
 			return;
