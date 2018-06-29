@@ -2,8 +2,8 @@ let Configuration = require("../configuration");
 
 module.exports = (client, Reaction, User) => {
     if (User.bot) { return; }
-    let member = client.guilds.get(Configuration.guild.ID).member(User.id);
     if (Reaction.message.id === Configuration.guild.AcceptRulesMessageID) {
+        let member = client.guilds.get(Configuration.guild.ID).member(User.id);
         if (!member.roles.has(Configuration.guild.MemberRoleID)) {
             member.addRole(Configuration.guild.MemberRoleID);
         }

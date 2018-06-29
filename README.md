@@ -22,7 +22,10 @@
 ****
 ##### Changelog (beginning from 28/06/2018)
 ****
-`v1.0.0-30062018 (latest)`
+`v1.1.0-30062018 (latest)`
+- modified other events so that they only emit when on my guild
+
+`v1.0.0-30062018`
 - modified this file with the bot's abilities (and changelog)
 - modified the role command so that it only executes when the bot is in my guild
 - removed test logging from the weather command
