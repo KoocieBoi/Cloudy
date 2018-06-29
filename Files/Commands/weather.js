@@ -15,10 +15,7 @@ module.exports = (client, msg, cmd, args) => {
                     Embeds.SendWeatherCommandLocationNotFoundMessage(msg);
                     return;
                 }
-                else { 
-                    console.log(result);
-                    Embeds.SendWeatherCommandMessage(msg, result);
-                } 
+                else Embeds.SendWeatherCommandMessage(msg, result);
             });
         }
     }

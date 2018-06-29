@@ -1,8 +1,29 @@
 const EmbedsFile = require("../embeds");
 const RolesFile = require("../roles.json");
+const Configuration = require("../configuration");
 
 module.exports = async (client, msg, cmd, args) => {
-    if (cmd === "role") {
+    function check(Role_OR_Colour, toReturn) {
+        if (Role_OR_Colour === 'Colour') {
+        
+            let IndexOfRole = RolesFile.colours.nameID.indexOf(args[1].toUpperCase());
+            let HasRole = msg.member.roles.has(RolesFile.colours.ID[IndexOfRole]);
+        
+            if (toReturn === 'Index') return IndexOfRole;
+            else if (toReturn === 'HasRole') return HasRole;
+            
+        }
+        else if (Role_OR_Colour === 'Role') {
+        
+            let IndexOfRole = RolesFile.roles.nameID.indexOf(args[1].toLowerCase());
+            let HasRole = msg.member.roles.has(RolesFile.roles.ID[IndexOfRole]);
+        
+            if (toReturn === 'Index') return IndexOfRole;
+            else if (toReturn === 'HasRole') return HasRole;
+        
+        }
+    }
+    if (cmd === "role" && msg.guild.id === Configuration.guild.ID) {
         let GetColoursCount = () => {
             let ColoursCount = 0;
             RolesFile.colours.ID.forEach((ID) => {
@@ -16,27 +37,6 @@ module.exports = async (client, msg, cmd, args) => {
                 else await EmbedsFile.SendCommandWrongUsage(msg, 3);
             }
             else {
-            
-                function check(Role_OR_Colour, toReturn) {
-                    if (Role_OR_Colour === 'Colour') {
-                    
-                        let IndexOfRole = RolesFile.colours.nameID.indexOf(args[1].toUpperCase());
-                        let HasRole = msg.member.roles.has(RolesFile.colours.ID[IndexOfRole]);
-                    
-                        if (toReturn === 'Index') return IndexOfRole;
-                        else if (toReturn === 'HasRole') return HasRole;
-                        
-                    }
-                    else if (Role_OR_Colour === 'Role') {
-                    
-                        let IndexOfRole = RolesFile.roles.nameID.indexOf(args[1].toLowerCase());
-                        let HasRole = msg.member.roles.has(RolesFile.roles.ID[IndexOfRole]);
-                    
-                        if (toReturn === 'Index') return IndexOfRole;
-                        else if (toReturn === 'HasRole') return HasRole;
-                    
-                    }
-                }
             
                 if (args[0].toLowerCase() === "add") {
                         if (check("Colour", "Index") >= 0) {
