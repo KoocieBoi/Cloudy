@@ -1,3 +1,5 @@
+**ANNOUNCEMENT: DEAD, 'll be replaced by a new guy.**
+
 #### Cloudy
 ##### Welcome! I am Cloudy and I can do a lot of things such as:
 - ## Getting an user's avatar
